@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style><![CDATA[
+      .mono { font-family: 'JetBrains Mono', Menlo, ui-monospace, monospace; }
+      .sans { font-family: 'Inter Tight', system-ui, sans-serif; }
+    ]]></style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#0d0c0a"/>
+
+  <!-- HEADER -->
+  <text x="80" y="100" class="mono" font-size="12" letter-spacing="3.5" fill="rgba(239,233,216,0.50)">
+    LAYER STACK · iii ENGINE · iii
+  </text>
+  <text x="80" y="180" class="sans" font-size="64" font-weight="500" letter-spacing="-1.5" fill="#efe9d8">
+    iii engine modules · stacked abstractions
+  </text>
+  <text x="80" y="220" class="mono" font-size="14" letter-spacing="0.5" fill="rgba(239,233,216,0.50)">
+    one binary · ws://:49134 · seven modules · zero plugin api
+  </text>
+
+  <!-- STACK BODY -->
+  <!-- 7 layers, top → bottom: Cron · PubSub · Queue · Stream · State · REST · OTel  -->
+  <!-- focal layer = STATE (durable kv, foundation) -->
+
+  <!-- Layer 1: Cron -->
+  <rect x="240" y="320" width="1440" height="68" rx="8" fill="#15140f" stroke="#efe9d8" stroke-width="1"/>
+  <rect x="252" y="332" width="40" height="16" rx="2" fill="transparent" stroke="rgba(239,233,216,0.50)" stroke-width="0.8"/>
+  <text x="272" y="343" class="mono" font-size="9" letter-spacing="1.2" fill="rgba(239,233,216,0.50)" text-anchor="middle">L7</text>
+  <text x="312" y="362" class="sans" font-size="20" font-weight="600" fill="#efe9d8">CronModule</text>
+  <text x="1668" y="362" class="mono" font-size="13" fill="rgba(239,233,216,0.74)" text-anchor="end">5-field cron · KV adapter</text>
+
+  <!-- Layer 2: PubSub -->
+  <rect x="240" y="404" width="1440" height="68" rx="8" fill="#15140f" stroke="#efe9d8" stroke-width="1"/>
+  <rect x="252" y="416" width="40" height="16" rx="2" fill="transparent" stroke="rgba(239,233,216,0.50)" stroke-width="0.8"/>
+  <text x="272" y="427" class="mono" font-size="9" letter-spacing="1.2" fill="rgba(239,233,216,0.50)" text-anchor="middle">L6</text>
+  <text x="312" y="446" class="sans" font-size="20" font-weight="600" fill="#efe9d8">PubSubModule</text>
+  <text x="1668" y="446" class="mono" font-size="13" fill="rgba(239,233,216,0.74)" text-anchor="end">topic fan-out · LocalAdapter</text>
+
+  <!-- Layer 3: Queue -->
+  <rect x="240" y="488" width="1440" height="68" rx="8" fill="#15140f" stroke="#efe9d8" stroke-width="1"/>
+  <rect x="252" y="500" width="40" height="16" rx="2" fill="transparent" stroke="rgba(239,233,216,0.50)" stroke-width="0.8"/>
+  <text x="272" y="511" class="mono" font-size="9" letter-spacing="1.2" fill="rgba(239,233,216,0.50)" text-anchor="middle">L5</text>
+  <text x="312" y="530" class="sans" font-size="20" font-weight="600" fill="#efe9d8">QueueModule</text>
+  <text x="1668" y="530" class="mono" font-size="13" fill="rgba(239,233,216,0.74)" text-anchor="end">in-process · DLQ · BuiltinQueueAdapter</text>
+
+  <!-- Layer 4: Stream -->
+  <rect x="240" y="572" width="1440" height="68" rx="8" fill="#15140f" stroke="#efe9d8" stroke-width="1"/>
+  <rect x="252" y="584" width="40" height="16" rx="2" fill="transparent" stroke="rgba(239,233,216,0.50)" stroke-width="0.8"/>
+  <text x="272" y="595" class="mono" font-size="9" letter-spacing="1.2" fill="rgba(239,233,216,0.50)" text-anchor="middle">L4</text>
+  <text x="312" y="614" class="sans" font-size="20" font-weight="600" fill="#efe9d8">StreamModule</text>
+  <text x="1668" y="614" class="mono" font-size="13" fill="rgba(239,233,216,0.74)" text-anchor="end">port :3112 · file_based</text>
+
+  <!-- Layer 5: State (FOCAL) -->
+  <text x="1660" y="708" class="sans" font-size="100" font-weight="700"
+        fill="rgba(232,138,78,0.10)" text-anchor="end" letter-spacing="-3">L3</text>
+  <rect x="240" y="656" width="1440" height="84" rx="8" fill="rgba(232,138,78,0.10)" stroke="#e88a4e" stroke-width="1.6"/>
+  <rect x="252" y="668" width="56" height="16" rx="2" fill="transparent" stroke="#e88a4e" stroke-width="0.9"/>
+  <text x="280" y="679" class="mono" font-size="9" letter-spacing="1.2" fill="#e88a4e" text-anchor="middle">FOCAL</text>
+  <text x="328" y="700" class="sans" font-size="22" font-weight="700" fill="#efe9d8">StateModule</text>
+  <text x="328" y="724" class="mono" font-size="13" fill="rgba(239,233,216,0.74)">durable kv · file_based · ~/.agentos/data/state</text>
+
+  <!-- Layer 6: REST -->
+  <rect x="240" y="756" width="1440" height="68" rx="8" fill="#15140f" stroke="#efe9d8" stroke-width="1"/>
+  <rect x="252" y="768" width="40" height="16" rx="2" fill="transparent" stroke="rgba(239,233,216,0.50)" stroke-width="0.8"/>
+  <text x="272" y="779" class="mono" font-size="9" letter-spacing="1.2" fill="rgba(239,233,216,0.50)" text-anchor="middle">L2</text>
+  <text x="312" y="798" class="sans" font-size="20" font-weight="600" fill="#efe9d8">RestApiModule</text>
+  <text x="1668" y="798" class="mono" font-size="13" fill="rgba(239,233,216,0.74)" text-anchor="end">port :3111 · CORS *</text>
+
+  <!-- Layer 7: OTel -->
+  <rect x="240" y="840" width="1440" height="68" rx="8" fill="rgba(239,233,216,0.02)" stroke="rgba(239,233,216,0.30)" stroke-width="1" stroke-dasharray="4 3"/>
+  <rect x="252" y="852" width="40" height="16" rx="2" fill="transparent" stroke="rgba(239,233,216,0.30)" stroke-width="0.8"/>
+  <text x="272" y="863" class="mono" font-size="9" letter-spacing="1.2" fill="rgba(239,233,216,0.50)" text-anchor="middle">L1</text>
+  <text x="312" y="882" class="sans" font-size="20" font-weight="600" fill="rgba(239,233,216,0.74)">OtelModule</text>
+  <text x="1668" y="882" class="mono" font-size="13" fill="rgba(239,233,216,0.50)" text-anchor="end">disabled · enabled: false</text>
+
+  <!-- LEGEND -->
+  <line x1="80" y1="990" x2="1840" y2="990" stroke="rgba(239,233,216,0.14)" stroke-width="0.8"/>
+  <text x="80" y="1018" class="mono" font-size="11" letter-spacing="2.8" fill="rgba(239,233,216,0.50)">LEGEND</text>
+
+  <rect x="208" y="1006" width="20" height="14" rx="3" fill="rgba(232,138,78,0.10)" stroke="#e88a4e" stroke-width="1"/>
+  <text x="240" y="1018" class="mono" font-size="12" fill="#efe9d8">Focal layer · iii primary</text>
+
+  <rect x="540" y="1006" width="20" height="14" rx="3" fill="#15140f" stroke="#efe9d8" stroke-width="1"/>
+  <text x="572" y="1018" class="mono" font-size="12" fill="#efe9d8">Active module</text>
+
+  <rect x="800" y="1006" width="20" height="14" rx="3" fill="rgba(239,233,216,0.02)" stroke="rgba(239,233,216,0.30)" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="832" y="1018" class="mono" font-size="12" fill="#efe9d8">Disabled · opt-in</text>
+</svg>

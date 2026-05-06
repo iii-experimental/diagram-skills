@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style><![CDATA[
+      .mono { font-family: 'JetBrains Mono', Menlo, ui-monospace, monospace; }
+      .sans { font-family: 'Inter Tight', system-ui, sans-serif; }
+    ]]></style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#f2ede1"/>
+
+  <!-- HEADER -->
+  <text x="80" y="100" class="mono" font-size="12" letter-spacing="3.5" fill="rgba(12,11,10,0.50)">
+    MESH · iii NARROW WORKERS · iii
+  </text>
+  <text x="80" y="180" class="sans" font-size="64" font-weight="500" letter-spacing="-1.5" fill="#0c0b0a">
+    Worker mesh · agent fans through iii.trigger
+  </text>
+  <text x="80" y="220" class="mono" font-size="14" letter-spacing="0.5" fill="rgba(12,11,10,0.50)">
+    n narrow workers · zero plugin api · all peers on the bus
+  </text>
+
+  <!-- MESH BODY (centered ring) -->
+  <!-- ring center: 960, 600  · radius 220 -->
+
+  <!-- mesh edges (subset, not full K_n) -->
+  <g stroke="rgba(12,11,10,0.26)" stroke-width="1" fill="none">
+    <line x1="960"  y1="380"  x2="780"  y2="430"/>
+    <line x1="960"  y1="380"  x2="1140" y2="430"/>
+    <line x1="960"  y1="380"  x2="704"  y2="600"/>
+    <line x1="960"  y1="380"  x2="1216" y2="600"/>
+    <line x1="780"  y1="430"  x2="1140" y2="430"/>
+    <line x1="780"  y1="430"  x2="1216" y2="600"/>
+    <line x1="780"  y1="430"  x2="1140" y2="770"/>
+    <line x1="1140" y1="430"  x2="704"  y2="600"/>
+    <line x1="1140" y1="430"  x2="780"  y2="770"/>
+    <line x1="704"  y1="600"  x2="1216" y2="600"/>
+    <line x1="704"  y1="600"  x2="1140" y2="770"/>
+    <line x1="1216" y1="600"  x2="780"  y2="770"/>
+    <line x1="780"  y1="770"  x2="1140" y2="770"/>
+    <line x1="780"  y1="770"  x2="960"  y2="820"/>
+    <line x1="1140" y1="770"  x2="960"  y2="820"/>
+  </g>
+
+  <!-- spotlit edges from agent (ember) -->
+  <g stroke="#d9763a" stroke-width="1.2" fill="none">
+    <line x1="960" y1="900"  x2="960"  y2="380"/>
+    <line x1="960" y1="900"  x2="780"  y2="430"/>
+    <line x1="960" y1="900"  x2="1140" y2="430"/>
+    <line x1="960" y1="900"  x2="704"  y2="600"/>
+    <line x1="960" y1="900"  x2="1216" y2="600"/>
+    <line x1="960" y1="900"  x2="780"  y2="770"/>
+  </g>
+
+  <!-- nodes (10 around circle) -->
+  <g class="mono" font-size="13" font-weight="700" fill="#0c0b0a" text-anchor="middle">
+    <g transform="translate(960, 380)">
+      <text y="-26">orchestrator</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+    <g transform="translate(780, 430)">
+      <text y="-22">memory</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+    <g transform="translate(1140, 430)">
+      <text y="-22">db</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+    <g transform="translate(704, 600)">
+      <text x="-26" y="6" text-anchor="end">obs</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+    <g transform="translate(1216, 600)">
+      <text x="26" y="6" text-anchor="start">cache</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+    <g transform="translate(780, 770)">
+      <text x="-26" y="6" text-anchor="end">cron</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+    <g transform="translate(1140, 770)">
+      <text x="26" y="6" text-anchor="start">queue</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+    <g transform="translate(960, 820)">
+      <text y="-26" text-anchor="middle">stream</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+    <g transform="translate(840, 540)">
+      <text y="-22">http</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+    <g transform="translate(1080, 540)">
+      <text y="-22">fs</text>
+      <circle r="13" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+      <circle r="2.5" fill="#0c0b0a"/>
+    </g>
+  </g>
+
+  <!-- spotlit caller: agent (FOCAL) -->
+  <g transform="translate(960, 900)">
+    <circle r="32" fill="rgba(217,118,58,0.10)" stroke="none"/>
+    <circle r="18" fill="#f2ede1" stroke="#d9763a" stroke-width="2"/>
+    <circle r="3" fill="#d9763a"/>
+    <text y="56" class="mono" font-size="16" font-weight="700"
+          fill="#d9763a" text-anchor="middle">agent</text>
+  </g>
+
+  <!-- LEGEND -->
+  <line x1="80" y1="990" x2="1840" y2="990" stroke="rgba(12,11,10,0.14)" stroke-width="0.8"/>
+  <text x="80" y="1018" class="mono" font-size="11" letter-spacing="2.8" fill="rgba(12,11,10,0.50)">LEGEND</text>
+
+  <circle cx="208" cy="1014" r="6" fill="#f2ede1" stroke="#0c0b0a" stroke-width="1.4"/>
+  <circle cx="208" cy="1014" r="1.5" fill="#0c0b0a"/>
+  <text x="224" y="1018" class="mono" font-size="12" fill="#0c0b0a">Worker · iii.register_function</text>
+
+  <circle cx="600" cy="1014" r="9" fill="rgba(217,118,58,0.10)"/>
+  <circle cx="600" cy="1014" r="6" fill="#f2ede1" stroke="#d9763a" stroke-width="1.6"/>
+  <circle cx="600" cy="1014" r="1.5" fill="#d9763a"/>
+  <text x="618" y="1018" class="mono" font-size="12" fill="#0c0b0a">Caller · spotlit incident edges</text>
+
+  <line x1="1080" y1="1014" x2="1124" y2="1014" stroke="rgba(12,11,10,0.26)" stroke-width="1"/>
+  <text x="1136" y="1018" class="mono" font-size="12" fill="#0c0b0a">Mesh edge · trigger possible</text>
+
+  <line x1="1500" y1="1014" x2="1544" y2="1014" stroke="#d9763a" stroke-width="1.2"/>
+  <text x="1556" y="1018" class="mono" font-size="12" fill="#0c0b0a">Active · agent triggers now</text>
+</svg>

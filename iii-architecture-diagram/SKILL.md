@@ -270,9 +270,32 @@ Before declaring done.
 - [ ] Ember `#d9763a` appears on the focal box, the primary-flow arrow, and the legend swatch — three places max.
 - [ ] Footer reads `iii.dev · iii.dev/docs`.
 
-## Reference
+## Patterns
 
-- `assets/template.svg` — canonical iii architecture diagram (one focal worker, three sibling workers, one external caller, one edge surface).
-- `assets/template.png` — 3840px raster preview.
+Five canonical patterns ship in `assets/`. Pick the pattern that matches what you're showing; don't hybridize grammars.
+
+| Pattern | File | Use for |
+|---|---|---|
+| **Architecture** | `architecture-{cream,dark}.svg` | Components + connections · one focal worker · 6 nodes max |
+| **Mesh** | `mesh-{cream,dark}.svg` | N narrow workers around a hub · agent spotlit with ember edges |
+| **Layer stack** | `layer-stack-{cream,dark}.svg` | Stacked abstractions · iii engine modules · one focal layer |
+| **State machine** | `state-machine-{cream,dark}.svg` | States + transitions · arrows masked · one focal state |
+| **Add-a-worker** | `add-worker-{cream,dark}.svg` | Editorial · big sans + mono list · introduces the iii thesis |
+
+Every pattern has a cream variant and a dark variant. Single-file SVGs can't theme-cycle; pick the variant that matches the consumer (deck, README, slide, terminal). To ship both, run the same diagram through the cream and dark token sets.
+
+## Theme tokens
+
+Color substitution from cream to dark:
+
+| Cream | Dark |
+|---|---|
+| `#f2ede1` (paper) | `#0d0c0a` |
+| `#0c0b0a` (ink) | `#efe9d8` |
+| `rgba(12,11,10,…)` (ink alpha) | `rgba(239,233,216,…)` |
+| `#d9763a` (ember) | `#e88a4e` |
+| `rgba(217,118,58,…)` (ember alpha) | `rgba(232,138,78,…)` |
+| `#2e5aa8` (link blue) | `#7aa9ff` |
+| `#ffffff` (worker fill) | `#15140f` |
 
 For canonical iii primitive semantics (`iii.register_function`, `iii.trigger`, worker registration, trigger types), see [iii.dev/docs](https://iii.dev/docs).

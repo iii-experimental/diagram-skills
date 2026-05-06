@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style><![CDATA[
+      .mono { font-family: 'JetBrains Mono', Menlo, ui-monospace, monospace; }
+      .sans { font-family: 'Inter Tight', system-ui, sans-serif; }
+    ]]></style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#0d0c0a"/>
+
+  <!-- HEADER (small eyebrow only · the editorial title sits in the body) -->
+  <text x="80" y="100" class="mono" font-size="12" letter-spacing="3.5" fill="rgba(239,233,216,0.50)">
+    EDITORIAL · iii THESIS · iii
+  </text>
+
+  <!-- BODY: 2-column editorial -->
+  <line x1="940" y1="280" x2="940" y2="900" stroke="rgba(239,233,216,0.14)" stroke-width="1"/>
+
+  <!-- LEFT · big serif-style heading -->
+  <text x="120" y="540" class="sans" font-size="180" font-weight="700"
+        letter-spacing="-7" fill="#efe9d8">add a</text>
+  <text x="120" y="700" class="sans" font-size="180" font-weight="700"
+        letter-spacing="-7" fill="#e88a4e">worker.</text>
+
+  <!-- RIGHT · monospace add-list -->
+  <g class="mono" font-size="32">
+    <!-- row 1 -->
+    <circle cx="1024" cy="328" r="11" fill="#0d0c0a" stroke="#efe9d8" stroke-width="1.6"/>
+    <circle cx="1024" cy="328" r="3" fill="#efe9d8"/>
+    <text x="1064" y="340" fill="#efe9d8">state</text>
+    <text x="1760" y="340" fill="#e88a4e" text-anchor="end" font-weight="700">+ worker</text>
+
+    <!-- row 2 -->
+    <circle cx="1024" cy="408" r="11" fill="#0d0c0a" stroke="#efe9d8" stroke-width="1.6"/>
+    <circle cx="1024" cy="408" r="3" fill="#efe9d8"/>
+    <text x="1064" y="420" fill="#efe9d8">queue</text>
+    <text x="1760" y="420" fill="#e88a4e" text-anchor="end" font-weight="700">+ worker</text>
+
+    <!-- row 3 -->
+    <circle cx="1024" cy="488" r="11" fill="#0d0c0a" stroke="#efe9d8" stroke-width="1.6"/>
+    <circle cx="1024" cy="488" r="3" fill="#efe9d8"/>
+    <text x="1064" y="500" fill="#efe9d8">sandbox</text>
+    <text x="1760" y="500" fill="#e88a4e" text-anchor="end" font-weight="700">+ worker</text>
+
+    <!-- row 4 -->
+    <circle cx="1024" cy="568" r="11" fill="#0d0c0a" stroke="#efe9d8" stroke-width="1.6"/>
+    <circle cx="1024" cy="568" r="3" fill="#efe9d8"/>
+    <text x="1064" y="580" fill="#efe9d8">egress</text>
+    <text x="1760" y="580" fill="#e88a4e" text-anchor="end" font-weight="700">+ worker</text>
+
+    <!-- row 5 -->
+    <circle cx="1024" cy="648" r="11" fill="#0d0c0a" stroke="#efe9d8" stroke-width="1.6"/>
+    <circle cx="1024" cy="648" r="3" fill="#efe9d8"/>
+    <text x="1064" y="660" fill="#efe9d8">observability</text>
+    <text x="1760" y="660" fill="#e88a4e" text-anchor="end" font-weight="700">+ worker</text>
+
+    <!-- row 6 -->
+    <circle cx="1024" cy="728" r="11" fill="#0d0c0a" stroke="#efe9d8" stroke-width="1.6"/>
+    <circle cx="1024" cy="728" r="3" fill="#efe9d8"/>
+    <text x="1064" y="740" fill="#efe9d8">payment</text>
+    <text x="1760" y="740" fill="#e88a4e" text-anchor="end" font-weight="700">+ worker</text>
+
+    <!-- row 7 -->
+    <circle cx="1024" cy="808" r="11" fill="#0d0c0a" stroke="#efe9d8" stroke-width="1.6"/>
+    <circle cx="1024" cy="808" r="3" fill="#efe9d8"/>
+    <text x="1064" y="820" fill="#efe9d8">memory</text>
+    <text x="1760" y="820" fill="#e88a4e" text-anchor="end" font-weight="700">+ worker</text>
+  </g>
+
+  <!-- FOOTNOTE -->
+  <text x="120" y="900" class="mono" font-size="14" fill="rgba(239,233,216,0.74)">
+    every iii worker registers with iii.register_function. peers join the bus by joining.
+  </text>
+
+  <!-- LEGEND (none on editorial pattern) -->
+  <line x1="80" y1="990" x2="1840" y2="990" stroke="rgba(239,233,216,0.14)" stroke-width="0.8"/>
+  <text x="80" y="1018" class="mono" font-size="11" letter-spacing="2.8" fill="rgba(239,233,216,0.50)">PATTERN · ADD-A-WORKER · BIG SANS HEADING + MONO LIST</text>
+  <text x="1840" y="1018" class="mono" font-size="11" letter-spacing="2.8" fill="rgba(239,233,216,0.50)" text-anchor="end">iii.dev · iii.dev/docs</text>
+</svg>
