@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080"
+     font-family="Inter Tight, system-ui, sans-serif">
+  <defs>
+    <style><![CDATA[
+      .paper { fill: #f2ede1; }
+      .ink   { fill: #0c0b0a; }
+      .muted { fill: rgba(12,11,10,0.74); }
+      .soft  { fill: rgba(12,11,10,0.50); }
+      .rule  { fill: rgba(12,11,10,0.14); }
+      .acc   { fill: #d9763a; }
+      .link  { fill: #2e5aa8; }
+      .acc-tint { fill: rgba(217,118,58,0.10); }
+      .ink-005  { fill: rgba(12,11,10,0.05); }
+
+      .s-ink   { stroke: #0c0b0a; }
+      .s-muted { stroke: rgba(12,11,10,0.50); }
+      .s-soft  { stroke: rgba(12,11,10,0.30); }
+      .s-rule  { stroke: rgba(12,11,10,0.14); }
+      .s-acc   { stroke: #d9763a; }
+      .s-link  { stroke: #2e5aa8; }
+
+      .mono { font-family: 'JetBrains Mono', Menlo, ui-monospace, monospace; }
+      .sans { font-family: 'Inter Tight', system-ui, sans-serif; }
+    ]]></style>
+
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0c0b0a"/>
+    </marker>
+    <marker id="arrow-acc" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#d9763a"/>
+    </marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/>
+    </marker>
+  </defs>
+
+  <!-- canvas -->
+  <rect width="1920" height="1080" fill="#f2ede1"/>
+
+  <!-- =======================================================
+       HEADER · eyebrow + title (Cathryn-style)
+       ======================================================= -->
+  <text x="80" y="100" class="mono soft" font-size="12" letter-spacing="3.5">
+    ARCHITECTURE · AGENTOS · iii
+  </text>
+  <text x="80" y="180" class="sans ink" font-size="64" font-weight="500" letter-spacing="-1.5">
+    Sandbox lifecycle on the iii bus
+  </text>
+  <text x="80" y="220" class="mono soft" font-size="14" letter-spacing="0.5">
+    POST /api/sandboxes · 32 workers · ws://:49134
+  </text>
+
+  <!-- =======================================================
+       ARROWS (drawn first so boxes render on top)
+       ======================================================= -->
+
+  <!-- caller → iii REST · link-blue HTTPS -->
+  <line x1="280" y1="540" x2="396" y2="540" class="s-link" stroke-width="1.4" marker-end="url(#arrow-link)"/>
+
+  <!-- iii REST → sandbox · ember primary flow -->
+  <line x1="600" y1="540" x2="716" y2="540" class="s-acc" stroke-width="1.6" marker-end="url(#arrow-acc)"/>
+
+  <!-- sandbox → warmpool · ink, slight diagonal up -->
+  <line x1="1000" y1="500" x2="1236" y2="420" class="s-ink" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- sandbox → snapshot · ink, near-horizontal -->
+  <line x1="1000" y1="540" x2="1236" y2="580" class="s-ink" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- sandbox → security · ink, diagonal down -->
+  <line x1="1000" y1="580" x2="1236" y2="740" class="s-ink" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- =======================================================
+       NODE 1 · Caller (External)
+       ======================================================= -->
+  <rect x="80" y="480" width="200" height="120" rx="8" fill="#f2ede1"/>
+  <rect x="80" y="480" width="200" height="120" rx="8" fill="rgba(12,11,10,0.03)" class="s-soft" stroke-width="1.2"/>
+  <!-- type tag -->
+  <rect x="92" y="492" width="36" height="16" rx="2" fill="transparent" stroke="rgba(12,11,10,0.30)" stroke-width="0.8"/>
+  <text x="110" y="503" class="mono soft" font-size="9" text-anchor="middle" letter-spacing="1.2">EXT</text>
+  <!-- name -->
+  <text x="180" y="552" class="sans ink" font-size="20" font-weight="600" text-anchor="middle">Caller</text>
+  <!-- sublabel -->
+  <text x="180" y="576" class="mono muted" font-size="12" text-anchor="middle">browser · agent</text>
+
+  <!-- =======================================================
+       NODE 2 · iii REST (Edge)
+       ======================================================= -->
+  <rect x="400" y="480" width="200" height="120" rx="8" fill="#f2ede1"/>
+  <rect x="400" y="480" width="200" height="120" rx="8" fill="rgba(12,11,10,0.05)" class="s-muted" stroke-width="1.2"/>
+  <rect x="412" y="492" width="44" height="16" rx="2" fill="transparent" stroke="rgba(12,11,10,0.50)" stroke-width="0.8"/>
+  <text x="434" y="503" class="mono muted" font-size="9" text-anchor="middle" letter-spacing="1.2">EDGE</text>
+  <text x="500" y="552" class="sans ink" font-size="20" font-weight="600" text-anchor="middle">iii REST</text>
+  <text x="500" y="576" class="mono muted" font-size="12" text-anchor="middle">port :3111</text>
+
+  <!-- =======================================================
+       NODE 3 · worker: sandbox  (FOCAL · ember)
+       ======================================================= -->
+  <!-- ghost numeral 01 inside box -->
+  <text x="980" y="616" class="sans" font-size="120" font-weight="700"
+        fill="rgba(217,118,58,0.10)" text-anchor="end" letter-spacing="-4">01</text>
+  <rect x="720" y="440" width="280" height="200" rx="8" fill="#f2ede1"/>
+  <rect x="720" y="440" width="280" height="200" rx="8" fill="rgba(217,118,58,0.10)" class="s-acc" stroke-width="1.6"/>
+  <rect x="732" y="452" width="56" height="16" rx="2" fill="transparent" stroke="#d9763a" stroke-width="0.9"/>
+  <text x="760" y="463" class="mono acc" font-size="9" text-anchor="middle" letter-spacing="1.2">FOCAL</text>
+  <text x="860" y="528" class="sans ink" font-size="22" font-weight="700" text-anchor="middle">worker: sandbox</text>
+  <text x="860" y="556" class="mono muted" font-size="12" text-anchor="middle">8 functions · iii.register_function</text>
+  <text x="860" y="588" class="mono soft" font-size="11" text-anchor="middle">create · resume · pause · renew</text>
+  <text x="860" y="608" class="mono soft" font-size="11" text-anchor="middle">clone · kill · get · list</text>
+
+  <!-- =======================================================
+       NODE 4 · worker: warmpool (Backend)
+       ======================================================= -->
+  <rect x="1240" y="360" width="240" height="120" rx="8" fill="#f2ede1"/>
+  <rect x="1240" y="360" width="240" height="120" rx="8" fill="#ffffff" class="s-ink" stroke-width="1"/>
+  <rect x="1252" y="372" width="40" height="16" rx="2" fill="transparent" stroke="rgba(12,11,10,0.50)" stroke-width="0.8"/>
+  <text x="1272" y="383" class="mono soft" font-size="9" text-anchor="middle" letter-spacing="1.2">WKR</text>
+  <text x="1360" y="432" class="sans ink" font-size="18" font-weight="600" text-anchor="middle">worker: warmpool</text>
+  <text x="1360" y="456" class="mono muted" font-size="11" text-anchor="middle">acquire · replenish · status</text>
+
+  <!-- =======================================================
+       NODE 5 · worker: snapshot (Backend)
+       ======================================================= -->
+  <rect x="1240" y="520" width="240" height="120" rx="8" fill="#f2ede1"/>
+  <rect x="1240" y="520" width="240" height="120" rx="8" fill="#ffffff" class="s-ink" stroke-width="1"/>
+  <rect x="1252" y="532" width="40" height="16" rx="2" fill="transparent" stroke="rgba(12,11,10,0.50)" stroke-width="0.8"/>
+  <text x="1272" y="543" class="mono soft" font-size="9" text-anchor="middle" letter-spacing="1.2">WKR</text>
+  <text x="1360" y="592" class="sans ink" font-size="18" font-weight="600" text-anchor="middle">worker: snapshot</text>
+  <text x="1360" y="616" class="mono muted" font-size="11" text-anchor="middle">create · restore · list · delete</text>
+
+  <!-- =======================================================
+       NODE 6 · worker: security (Backend)
+       ======================================================= -->
+  <rect x="1240" y="680" width="240" height="120" rx="8" fill="#f2ede1"/>
+  <rect x="1240" y="680" width="240" height="120" rx="8" fill="#ffffff" class="s-ink" stroke-width="1"/>
+  <rect x="1252" y="692" width="40" height="16" rx="2" fill="transparent" stroke="rgba(12,11,10,0.50)" stroke-width="0.8"/>
+  <text x="1272" y="703" class="mono soft" font-size="9" text-anchor="middle" letter-spacing="1.2">WKR</text>
+  <text x="1360" y="752" class="sans ink" font-size="18" font-weight="600" text-anchor="middle">worker: security</text>
+  <text x="1360" y="776" class="mono muted" font-size="11" text-anchor="middle">check_capability · audit</text>
+
+  <!-- =======================================================
+       ARROW LABELS (masked rects, drawn last on top of arrows)
+       ======================================================= -->
+  <!-- HTTPS -->
+  <rect x="312" y="524" width="56" height="20" rx="3" fill="#f2ede1"/>
+  <text x="340" y="538" class="mono link" font-size="10" font-weight="600" text-anchor="middle" letter-spacing="1.4">HTTPS</text>
+
+  <!-- INVOKE (primary flow) -->
+  <rect x="624" y="524" width="68" height="20" rx="3" fill="#f2ede1"/>
+  <text x="658" y="538" class="mono acc" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="1.4">INVOKE</text>
+
+  <!-- ACQUIRE -->
+  <rect x="1080" y="448" width="76" height="20" rx="3" fill="#f2ede1"/>
+  <text x="1118" y="462" class="mono soft" font-size="10" font-weight="600" text-anchor="middle" letter-spacing="1.4">ACQUIRE</text>
+
+  <!-- CREATE -->
+  <rect x="1080" y="548" width="68" height="20" rx="3" fill="#f2ede1"/>
+  <text x="1114" y="562" class="mono soft" font-size="10" font-weight="600" text-anchor="middle" letter-spacing="1.4">CREATE</text>
+
+  <!-- CHECK -->
+  <rect x="1080" y="652" width="60" height="20" rx="3" fill="#f2ede1"/>
+  <text x="1110" y="666" class="mono soft" font-size="10" font-weight="600" text-anchor="middle" letter-spacing="1.4">CHECK</text>
+
+  <!-- =======================================================
+       LEGEND · horizontal bottom strip with hairline
+       ======================================================= -->
+  <line x1="80" y1="900" x2="1840" y2="900" stroke="rgba(12,11,10,0.14)" stroke-width="0.8"/>
+
+  <text x="80" y="932" class="mono soft" font-size="11" letter-spacing="2.8">LEGEND</text>
+
+  <!-- Focal (ember tint) -->
+  <rect x="200" y="920" width="20" height="14" rx="3" fill="rgba(217,118,58,0.10)" stroke="#d9763a" stroke-width="1"/>
+  <text x="232" y="932" class="mono ink" font-size="12">Focal · iii primary</text>
+
+  <!-- Worker (white + ink) -->
+  <rect x="440" y="920" width="20" height="14" rx="3" fill="#ffffff" stroke="#0c0b0a" stroke-width="1"/>
+  <text x="472" y="932" class="mono ink" font-size="12">Worker · iii.register_function</text>
+
+  <!-- Edge (muted) -->
+  <rect x="800" y="920" width="20" height="14" rx="3" fill="rgba(12,11,10,0.05)" stroke="rgba(12,11,10,0.50)" stroke-width="1"/>
+  <text x="832" y="932" class="mono ink" font-size="12">Edge · iii REST module</text>
+
+  <!-- External (soft) -->
+  <rect x="1080" y="920" width="20" height="14" rx="3" fill="rgba(12,11,10,0.03)" stroke="rgba(12,11,10,0.30)" stroke-width="1"/>
+  <text x="1112" y="932" class="mono ink" font-size="12">External</text>
+
+  <!-- HTTP arrow -->
+  <line x1="1240" y1="928" x2="1280" y2="928" class="s-link" stroke-width="1.4" marker-end="url(#arrow-link)"/>
+  <text x="1296" y="932" class="mono ink" font-size="12">HTTPS</text>
+
+  <!-- Primary flow arrow -->
+  <line x1="1408" y1="928" x2="1448" y2="928" class="s-acc" stroke-width="1.6" marker-end="url(#arrow-acc)"/>
+  <text x="1464" y="932" class="mono ink" font-size="12">Primary flow · invoke</text>
+
+  <!-- Default ink arrow -->
+  <line x1="1716" y1="928" x2="1756" y2="928" class="s-ink" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <text x="1772" y="932" class="mono ink" font-size="12">trigger</text>
+
+  <!-- =======================================================
+       FOOTER · colophon
+       ======================================================= -->
+  <text x="80"   y="1020" class="mono soft" font-size="10" letter-spacing="2.4">AGENTOS · iii ARCHITECTURE</text>
+  <text x="1840" y="1020" class="mono soft" font-size="10" letter-spacing="2.4" text-anchor="end">iii.dev · iii.dev/docs</text>
+</svg>

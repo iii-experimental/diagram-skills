@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en" data-theme="cream">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[project] / system reference · iii</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root[data-theme="cream"] {
+  --bg:        #f2ede1;
+  --bg-2:      #ebe5d4;
+  --paper-grid: rgba(12, 11, 10, 0.045);
+  --fg:        #0c0b0a;
+  --fg-2:      rgba(12, 11, 10, 0.74);
+  --fg-3:      rgba(12, 11, 10, 0.5);
+  --line:        rgba(12, 11, 10, 0.14);
+  --line-strong: rgba(12, 11, 10, 0.26);
+  --accent:    oklch(0.62 0.16 45);
+  --signal:    oklch(0.55 0.13 155);
+}
+:root[data-theme="dark"] {
+  --bg:        #0d0c0a;
+  --bg-2:      #15140f;
+  --paper-grid: rgba(232, 226, 211, 0.045);
+  --fg:        #efe9d8;
+  --fg-2:      rgba(239, 233, 216, 0.78);
+  --fg-3:      rgba(239, 233, 216, 0.52);
+  --line:        rgba(239, 233, 216, 0.12);
+  --line-strong: rgba(239, 233, 216, 0.22);
+  --accent:    oklch(0.72 0.16 45);
+  --signal:    oklch(0.72 0.13 155);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  background-image:
+    linear-gradient(to right, var(--paper-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--paper-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.container { width: min(1320px, 94vw); margin: 0 auto; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+/* topnav */
+.topnav {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.topnav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+}
+.brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg);
+}
+.brand b { color: var(--accent); font-weight: 700; }
+.theme-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-2);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.theme-btn:hover { color: var(--fg); border-color: var(--fg-2); }
+
+/* doc header */
+.doc-header { padding: 56px 0 64px; border-bottom: 1px solid var(--line-strong); }
+.doc-id {
+  display: flex; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3);
+  margin-bottom: 36px;
+}
+.doc-title {
+  font-family: 'Inter Tight', sans-serif; font-weight: 600;
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+  margin: 0 0 22px;
+  color: var(--fg);
+}
+.doc-title .ghost { color: var(--fg-3); font-weight: 500; }
+.doc-subtitle {
+  font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--fg-2);
+  max-width: 90ch; line-height: 1.55;
+  margin: 0 0 40px;
+}
+.doc-meta {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  border: 1px solid var(--line-strong);
+  margin-bottom: 28px;
+}
+.doc-meta .cell {
+  padding: 14px 16px; border-right: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace;
+}
+.doc-meta .cell:last-child { border-right: none; }
+.doc-meta .label {
+  font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3); margin-bottom: 8px;
+}
+.doc-meta .value { font-size: 14px; font-weight: 500; color: var(--fg); }
+.doc-meta .value .num { color: var(--accent); font-weight: 700; }
+
+.legend {
+  display: grid; grid-template-columns: 110px 1fr;
+  border: 1px solid var(--line-strong);
+  font-family: 'JetBrains Mono', monospace;
+}
+.legend-label {
+  padding: 10px 16px; border-right: 1px solid var(--line);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3); display: flex; align-items: center;
+}
+.legend-keys {
+  padding: 10px 16px; display: flex; gap: 28px; flex-wrap: wrap;
+  font-size: 11.5px;
+}
+.legend-key { display: inline-flex; align-items: center; gap: 8px; color: var(--fg-2); }
+.legend-key .swatch {
+  display: inline-block; width: 11px; height: 11px;
+  border: 1px solid var(--fg);
+}
+.legend-key .swatch.signal { background: var(--signal); border-color: var(--signal); }
+.legend-key .swatch.accent { background: var(--accent); border-color: var(--accent); }
+.legend-key .swatch.neutral { background: var(--bg-2); }
+
+/* sections */
+section { border-top: 1px solid var(--line-strong); padding: 56px 0 60px; }
+section:first-of-type { border-top: none; }
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+.sec-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3); white-space: nowrap;
+}
+.sec-eyebrow b { color: var(--accent); font-weight: 700; }
+.sec-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: 0.18em; color: var(--fg-3);
+  white-space: nowrap;
+}
+.sec-h2 {
+  font-family: 'Inter Tight', sans-serif; font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 30px);
+  letter-spacing: -0.018em;
+  margin: 0 0 14px; color: var(--fg);
+}
+.sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px; line-height: 1.55; color: var(--fg-2);
+  max-width: 90ch; margin: 0 0 32px;
+}
+
+/* tables */
+.scroll-x { overflow-x: auto; border: 1px solid var(--line-strong); }
+table.data {
+  width: 100%; border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+table.data th {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3); font-weight: 500;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line-strong);
+  padding: 9px 14px; text-align: left;
+}
+table.data td {
+  padding: 9px 14px; border-bottom: 1px solid var(--line);
+  color: var(--fg); vertical-align: top;
+}
+table.data tbody tr:hover { background: var(--bg-2); }
+table.data tr.group td {
+  background: var(--bg-2);
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3); padding: 8px 14px;
+}
+.num-col { text-align: right; }
+.dim { color: var(--fg-3); }
+.acc { color: var(--accent); }
+.sig { color: var(--signal); }
+.code-inline {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  background: var(--bg-2); padding: 1px 5px;
+  border: 1px solid var(--line); color: var(--fg);
+}
+
+/* svg containers */
+.svg-wrap { border: 1px solid var(--line-strong); background: var(--bg); padding: 18px; }
+
+/* formula blocks */
+.formula {
+  border: 1px solid var(--line-strong); background: var(--bg);
+  padding: 20px 22px; margin-top: 22px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.formula .name {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3); margin-bottom: 10px;
+}
+.formula .expr { font-size: 14px; line-height: 1.7; color: var(--fg); }
+.formula .expr .op { color: var(--fg-2); }
+.formula .expr .v { color: var(--accent); font-weight: 500; }
+.formula .where { font-size: 11px; color: var(--fg-2); margin-top: 12px; line-height: 1.6; }
+.formula .where code {
+  background: var(--bg-2); padding: 1px 5px; border: 1px solid var(--line);
+}
+
+/* boot log */
+pre.boot {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.7;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  padding: 20px 22px; overflow-x: auto;
+  color: var(--fg); margin: 0;
+}
+pre.boot .c { color: var(--fg-3); }
+pre.boot .d { color: var(--fg-2); }
+pre.boot .a { color: var(--accent); font-weight: 500; }
+pre.boot .s { color: var(--signal); font-weight: 500; }
+pre.boot .t { color: var(--fg); font-weight: 700; }
+
+/* surfaces grid */
+.surfaces {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line-strong);
+}
+.surface-card {
+  padding: 22px 20px;
+  border-right: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace;
+}
+.surface-card:last-child { border-right: none; }
+.surface-card .lbl {
+  font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3); margin-bottom: 8px;
+}
+.surface-card .nm {
+  font-size: 16px; color: var(--fg); font-weight: 500;
+  margin-bottom: 12px; letter-spacing: -0.01em;
+}
+.surface-card .nm .acc { color: var(--accent); font-weight: 700; }
+.surface-card ul { list-style: none; margin: 0; padding: 0; font-size: 11px; line-height: 1.65; color: var(--fg-2); }
+.surface-card ul li { padding: 1px 0; }
+.surface-card.primary { background: var(--bg-2); }
+
+/* footer */
+footer { border-top: 1px solid var(--line-strong); padding: 56px 0 36px; }
+.refs {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line-strong);
+}
+.refs .col {
+  padding: 22px 22px;
+  border-right: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace;
+}
+.refs .col:last-child { border-right: none; }
+.refs .lbl {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3); margin-bottom: 12px;
+}
+.refs ul { list-style: none; margin: 0; padding: 0; font-size: 11px; line-height: 1.85; color: var(--fg-2); }
+.refs ul li { padding: 1px 0; }
+.refs ul li::before { content: '→  '; color: var(--fg-3); }
+.refs .col.flags ul li::before { content: '·  '; }
+.refs ul li b { color: var(--fg); font-weight: 500; }
+
+.colophon {
+  display: flex; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--fg-3);
+  margin-top: 32px; padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.colophon a { color: var(--fg-2); text-decoration: none; }
+.colophon a:hover { color: var(--accent); }
+
+@media (max-width: 920px) {
+  .doc-meta { grid-template-columns: repeat(3, 1fr); }
+  .doc-meta .cell:nth-child(3n) { border-right: none; }
+  .surfaces { grid-template-columns: repeat(2, 1fr); }
+  .surface-card { border-bottom: 1px solid var(--line); }
+  .refs { grid-template-columns: 1fr; }
+  .refs .col { border-right: none; border-bottom: 1px solid var(--line); }
+  .refs .col:last-child { border-bottom: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav"><div class="container topnav-inner">
+  <span class="brand"><b>iii</b> · [project]</span>
+  <button class="theme-btn" id="theme-cycle" type="button">theme · cream</button>
+</div></nav>
+
+<div class="container">
+
+  <!-- ============== HEADER ============== -->
+  <header class="doc-header">
+    <div class="doc-id">
+      <span>system reference · single-page</span>
+      <span>rev YYYY.MM · iii.dev</span>
+    </div>
+    <h1 class="doc-title">[project] <span class="ghost">/ system reference</span></h1>
+    <p class="doc-subtitle">[ONE-LINE SYSTEM SUMMARY · RUNTIME · SCOPE · WHO IT IS FOR]</p>
+
+    <div class="doc-meta">
+      <div class="cell"><div class="label">Version</div><div class="value"><span class="num">v0.1.0</span></div></div>
+      <div class="cell"><div class="label">Runtime</div><div class="value">iii · ws://:<span class="num">49134</span></div></div>
+      <div class="cell"><div class="label">Workers</div><div class="value"><span class="num">2</span></div></div>
+      <div class="cell"><div class="label">Functions</div><div class="value"><span class="num">12</span></div></div>
+      <div class="cell"><div class="label">Triggers</div><div class="value"><span class="num">5</span></div></div>
+      <div class="cell"><div class="label">Tests</div><div class="value"><span class="num">216</span></div></div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-label">Legend</div>
+      <div class="legend-keys">
+        <span class="legend-key"><span class="swatch signal"></span>built-in path · always present, no extra worker</span>
+        <span class="legend-key"><span class="swatch accent"></span>composable · requires registering a worker on the bus</span>
+        <span class="legend-key"><span class="swatch neutral"></span>scaffold · types, traits, glue</span>
+        <span class="legend-key"><span style="color:var(--fg-2);font-size:11px;">solid → required · dashed → optional</span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== § 01 SYSTEM ============== -->
+  <section id="sec01">
+    <div class="sec-head">
+      <span class="sec-eyebrow"><b>§ 01 · SYSTEM</b> · TOPOLOGY</span>
+      <span class="sec-counter">01 / 08</span>
+    </div>
+    <h2 class="sec-h2">Callers cross four columns to reach state.</h2>
+    <p class="sub">Every request flows: caller → trigger → function → state. The four columns below are the iii substrate; everything else is application logic that lives inside it. Source: <code class="code-inline">src/triggers/api.ts</code>.</p>
+
+    <div class="svg-wrap">
+      <svg viewBox="0 0 1240 380" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--fg)"/>
+          </marker>
+          <marker id="arr-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/>
+          </marker>
+          <marker id="arr-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--signal)"/>
+          </marker>
+        </defs>
+
+        <line x1="310" y1="40" x2="310" y2="350" stroke="var(--line)" stroke-dasharray="2 4"/>
+        <line x1="620" y1="40" x2="620" y2="350" stroke="var(--line)" stroke-dasharray="2 4"/>
+        <line x1="930" y1="40" x2="930" y2="350" stroke="var(--line)" stroke-dasharray="2 4"/>
+
+        <text x="155"  y="30" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--fg-3)" text-anchor="middle" letter-spacing="2">CALLERS</text>
+        <text x="465"  y="30" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--fg-3)" text-anchor="middle" letter-spacing="2">TRIGGERS</text>
+        <text x="775"  y="30" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--fg-3)" text-anchor="middle" letter-spacing="2">FUNCTIONS</text>
+        <text x="1085" y="30" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--fg-3)" text-anchor="middle" letter-spacing="2">STATE / STREAMS</text>
+
+        <!-- caller -->
+        <rect x="35" y="80" width="240" height="48" fill="var(--bg-2)" stroke="var(--fg)" stroke-width="1.4"/>
+        <text x="155" y="100" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">browser</text>
+        <text x="155" y="116" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--fg-3)" text-anchor="middle">user-facing client</text>
+
+        <!-- trigger (primary, ember) -->
+        <rect x="345" y="80" width="240" height="48" fill="var(--bg-2)" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="465" y="100" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">POST /ingest</text>
+        <text x="465" y="116" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--accent)" text-anchor="middle">http trigger</text>
+
+        <!-- function -->
+        <rect x="655" y="80" width="240" height="48" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.4"/>
+        <text x="775" y="100" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">handler.process</text>
+        <text x="775" y="116" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--fg-3)" text-anchor="middle">12 sibling fns</text>
+
+        <!-- state -->
+        <rect x="965" y="80" width="240" height="48" fill="var(--bg-2)" stroke="var(--fg)" stroke-width="1.4"/>
+        <text x="1085" y="100" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">state::ingest</text>
+        <text x="1085" y="116" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--fg-3)" text-anchor="middle">durable kv</text>
+
+        <!-- arrows -->
+        <line x1="275" y1="104" x2="345" y2="104" stroke="var(--fg)"     stroke-width="1.4" marker-end="url(#arr)"/>
+        <line x1="585" y1="104" x2="655" y2="104" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#arr-a)"/>
+        <line x1="895" y1="104" x2="965" y2="104" stroke="var(--fg)"     stroke-width="1.4" marker-end="url(#arr)"/>
+
+        <!-- secondary: cron (signal) → function -->
+        <rect x="345" y="200" width="240" height="48" fill="var(--bg-2)" stroke="var(--signal)" stroke-width="1.2"/>
+        <text x="465" y="220" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">cron · */5</text>
+        <text x="465" y="236" font-family="JetBrains Mono, monospace" font-size="9" fill="var(--signal)" text-anchor="middle">free path · cleanup</text>
+        <line x1="585" y1="222" x2="655" y2="120" stroke="var(--signal)" stroke-width="1.2" stroke-dasharray="3 4" marker-end="url(#arr-s)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============== § 02 PRIMITIVES ============== -->
+  <section id="sec02">
+    <div class="sec-head">
+      <span class="sec-eyebrow"><b>§ 02 · PRIMITIVES</b> · FUNCTION SIGNATURES</span>
+      <span class="sec-counter">02 / 08</span>
+    </div>
+    <h2 class="sec-h2">Twelve functions, registered by two workers.</h2>
+    <p class="sub">Each row maps to a single <code class="code-inline">iii.registerFunction</code> call. Source: <code class="code-inline">src/functions/*.ts</code>.</p>
+
+    <div class="scroll-x"><table class="data">
+      <thead>
+        <tr><th>Function</th><th>Signature</th><th>Worker</th><th class="num-col">Trigger</th></tr>
+      </thead>
+      <tbody>
+        <tr class="group"><td colspan="4">ingress · 4 functions</td></tr>
+        <tr><td>handler.process</td><td>(payload: IngestRequest) =&gt; IngestResult</td><td>iii-rest</td><td class="num-col acc">HTTP</td></tr>
+        <tr><td>handler.batch</td><td>(items: IngestRequest[]) =&gt; BatchResult</td><td>iii-rest</td><td class="num-col acc">HTTP</td></tr>
+        <tr><td>handler.cleanup</td><td>() =&gt; CleanupSummary</td><td>cleanup</td><td class="num-col sig">cron</td></tr>
+        <tr><td>handler.replay</td><td>(cursor: string) =&gt; ReplayResult</td><td>iii-rest</td><td class="num-col">queue</td></tr>
+        <tr class="group"><td colspan="4">core · 5 functions</td></tr>
+        <tr><td>core.score</td><td>(doc: Doc, query: string) =&gt; number</td><td>iii-rest</td><td class="num-col dim">internal</td></tr>
+        <tr><td>core.rank</td><td>(scores: Score[]) =&gt; RankedDoc[]</td><td>iii-rest</td><td class="num-col dim">internal</td></tr>
+        <tr><td>core.fuse</td><td>(rankings: RankedDoc[][]) =&gt; FusedDoc[]</td><td>iii-rest</td><td class="num-col dim">internal</td></tr>
+        <tr><td>core.compress</td><td>(doc: Doc) =&gt; CompressedDoc</td><td>iii-rest</td><td class="num-col dim">internal</td></tr>
+        <tr><td>core.embed</td><td>(text: string) =&gt; Float32Array</td><td>iii-rest</td><td class="num-col acc">opt-in</td></tr>
+        <tr class="group"><td colspan="4">surface · 3 functions</td></tr>
+        <tr><td>surface.health</td><td>() =&gt; HealthReport</td><td>iii-rest</td><td class="num-col">HTTP</td></tr>
+        <tr><td>surface.metrics</td><td>() =&gt; PrometheusText</td><td>iii-rest</td><td class="num-col">HTTP</td></tr>
+        <tr><td>surface.version</td><td>() =&gt; VersionInfo</td><td>iii-rest</td><td class="num-col">HTTP</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============== § 04 CORE ============== -->
+  <section id="sec04">
+    <div class="sec-head">
+      <span class="sec-eyebrow"><b>§ 04 · CORE</b> · WHAT MAKES THIS PROJECT</span>
+      <span class="sec-counter">04 / 08</span>
+    </div>
+    <h2 class="sec-h2">The core scoring formula picks one path per query.</h2>
+    <p class="sub">The retrieval core has one binary decision: free path (BM25 + RRF) or paid path (vector + rerank). The user opts into the paid path with a single env flag. Source: <code class="code-inline">src/state/hybrid-search.ts</code>.</p>
+
+    <div class="formula">
+      <div class="name">BM25 · per-term score</div>
+      <div class="expr">
+        score<span class="op">(</span>D, t<span class="op">) =</span>
+        IDF<span class="op">(</span>t<span class="op">) ·</span>
+        tf<span class="op">(</span>t, D<span class="op">) · (</span><span class="v">k₁</span><span class="op"> + </span>1<span class="op">)</span>
+        <span class="op"> / (</span>tf<span class="op">(</span>t, D<span class="op">) + </span><span class="v">k₁</span>
+        <span class="op"> · (</span>1<span class="op"> - </span><span class="v">b</span><span class="op"> + </span><span class="v">b</span>
+        <span class="op"> · </span>|D|<span class="op"> / </span>avgdl<span class="op">))</span>
+      </div>
+      <div class="where">
+        <code>k₁ = 1.2</code>, <code>b = 0.75</code>. Source: <code>src/state/hybrid-search.ts</code>.
+      </div>
+    </div>
+
+    <div class="formula">
+      <div class="name">Reciprocal Rank Fusion · merge two rankings</div>
+      <div class="expr">
+        RRF<span class="op">(</span>d<span class="op">) = Σᵢ </span>
+        1<span class="op"> / (</span><span class="v">k</span><span class="op"> + </span>rankᵢ<span class="op">(</span>d<span class="op">))</span>
+      </div>
+      <div class="where">
+        <code>k = 60</code>. Source: <code>src/state/search-index.ts</code>.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== § 07 SURFACES ============== -->
+  <section id="sec07">
+    <div class="sec-head">
+      <span class="sec-eyebrow"><b>§ 07 · SURFACES</b> · EXTERNAL INTERFACES</span>
+      <span class="sec-counter">07 / 08</span>
+    </div>
+    <h2 class="sec-h2">Four surfaces, the REST surface is primary.</h2>
+    <p class="sub">Counts are exact, taken from the function registry. REST is the contract surface; everything else is reflective.</p>
+
+    <div class="surfaces">
+      <div class="surface-card primary">
+        <div class="lbl">REST</div>
+        <div class="nm"><span class="acc">12</span> endpoints</div>
+        <ul>
+          <li>handler · core · surface</li>
+          <li>port :3111</li>
+        </ul>
+      </div>
+      <div class="surface-card">
+        <div class="lbl">MCP tools</div>
+        <div class="nm">8 tools</div>
+        <ul>
+          <li>claude-code · cursor</li>
+          <li>stdio + http</li>
+        </ul>
+      </div>
+      <div class="surface-card">
+        <div class="lbl">Hooks</div>
+        <div class="nm">4 hooks</div>
+        <ul>
+          <li>PreToolUse · Stop</li>
+          <li>SessionStart · End</li>
+        </ul>
+      </div>
+      <div class="surface-card">
+        <div class="lbl">Cron</div>
+        <div class="nm">2 jobs</div>
+        <ul>
+          <li>cleanup · every 5 min</li>
+          <li>compact · daily</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== § 08 BOOT ============== -->
+  <section id="sec08">
+    <div class="sec-head">
+      <span class="sec-eyebrow"><b>§ 08 · BOOT</b> · ANNOTATED LOG</span>
+      <span class="sec-counter">08 / 08</span>
+    </div>
+    <h2 class="sec-h2">The boot log is the runtime contract.</h2>
+    <p class="sub">Every count on this page traces to a line below. If the boot log changes, this page changes.</p>
+
+<pre class="boot"><span class="d">$</span> <span class="a">curl -fsSL https://install.iii.dev/iii/main/install.sh | sh</span>
+<span class="c"># installs iii-engine binary to ~/.iii/bin</span>
+
+<span class="d">$</span> iii start
+<span class="c">[2026-01-01 00:00:00]</span> <span class="d">iii</span> engine ready
+<span class="c">[2026-01-01 00:00:00]</span> <span class="d">listening</span> http=<span class="t">3111</span> stream=<span class="t">3112</span> ws=<span class="t">49134</span>
+<span class="c">[2026-01-01 00:00:00]</span> <span class="d">workers</span> registered=<span class="t">2</span> functions=<span class="t">12</span> triggers=<span class="t">5</span>
+<span class="c">[2026-01-01 00:00:00]</span> <span class="d">state</span> scopes=<span class="t">6</span> mode=<span class="s">durable</span>
+<span class="c">[2026-01-01 00:00:00]</span> <span class="d">surfaces</span> rest=<span class="t">12</span> mcp=<span class="t">8</span> hooks=<span class="t">4</span> cron=<span class="t">2</span>
+<span class="c">[2026-01-01 00:00:00]</span> <span class="s">ready</span></pre>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="refs">
+      <div class="col">
+        <div class="lbl">Canonical files</div>
+        <ul>
+          <li><b>src/index.ts</b></li>
+          <li><b>src/state/schema.ts</b></li>
+          <li><b>src/state/hybrid-search.ts</b></li>
+          <li><b>src/state/search-index.ts</b></li>
+          <li><b>src/triggers/api.ts</b></li>
+          <li><b>src/functions/handler.ts</b></li>
+          <li><b>AGENTS.md</b></li>
+          <li><b>README.md</b></li>
+        </ul>
+      </div>
+      <div class="col flags">
+        <div class="lbl">Env flags</div>
+        <ul>
+          <li>III_ENGINE_URL · ws://localhost:49134</li>
+          <li>III_API_KEY · optional, CI only</li>
+          <li>III_LOG_LEVEL · info|debug|trace</li>
+          <li>OPT_IN_VECTORS · 0|1 · paid path</li>
+          <li>RRF_K · default 60</li>
+          <li>BM25_K1 · default 1.2</li>
+          <li>BM25_B · default 0.75</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="lbl">Runtime counters</div>
+        <ul>
+          <li>workers · 2</li>
+          <li>functions · 12</li>
+          <li>triggers · 5</li>
+          <li>state scopes · 6 (4 durable, 2 in-flight)</li>
+          <li>rest endpoints · 12</li>
+          <li>mcp tools · 8</li>
+          <li>hooks · 4</li>
+          <li>cron jobs · 2</li>
+          <li>tests · 216</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="colophon">
+      <span>[project] · v0.1.0 · iii system reference</span>
+      <span><a href="#top">↑ top</a> · <a href="https://iii.dev" target="_blank" rel="noopener">iii.dev →</a> · <a href="https://iii.dev/docs" target="_blank" rel="noopener">iii.dev/docs →</a></span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('theme-cycle');
+  var root = document.documentElement;
+  var stored = localStorage.getItem('iii-infographic-theme');
+  if (stored) root.setAttribute('data-theme', stored);
+  function render() {
+    btn.textContent = 'theme · ' + (root.getAttribute('data-theme') || 'cream');
+  }
+  render();
+  btn.addEventListener('click', function () {
+    var current = root.getAttribute('data-theme') || 'cream';
+    var next = current === 'cream' ? 'dark' : 'cream';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('iii-infographic-theme', next);
+    render();
+  });
+})();
+</script>
+</body>
+</html>
