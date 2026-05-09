@@ -63,6 +63,7 @@ Before drawing, ask: *would the reader learn more from this than from a well-wri
 | `references/patterns.md` | Five canonical patterns and how to pick |
 | `references/checklist.md` | Pre-output gate and PNG render command |
 | `references/anti-patterns.md` | Refuse-to-ship list |
+| `references/external-svgs.md` | Where to fetch real product/brand SVG logos (svgl, simpleicons, lucide) when a node refers to an external product |
 
 Templates in `templates/*.svg` — copy, edit, ship.
 

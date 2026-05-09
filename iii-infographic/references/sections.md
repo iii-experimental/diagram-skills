@@ -135,3 +135,20 @@ Below the panel, a single colophon row: `<project> · v<version> · iii system r
 | `tier-cascade.html` | §06 TIERS |
 | `surfaces-grid.html` | §07 SURFACES |
 | `boot-log.html` | §08 BOOT |
+
+## Alternate IA · explainer mode
+
+When the audience is conceptual ("how does X work end-to-end") rather than referential ("what's in this codebase"), shift the IA without abandoning the eight-section frame:
+
+```
+HEADER          · scenario card top-left + key-numbers card top-right
+§ 01 STEPS      · 4–6 numbered hero cards (one concept per card)         numbered-hero-cards.html
+§ 02 PRIMITIVES · function/component table — same shape as system-ref    primitives-table.html
+§ 03 FLOW       · end-to-end horizontal flow strip · 9 verbs left→right  flow-strip.html
+§ 04 CORE       · the central distinguishing mechanism · diagram + formula  core-formula.html
+§ 05 SURFACES   · 4-up "by the numbers / why it works / key insights / takeaway"  surfaces-grid.html
+```
+
+Voice can carry slightly more analogy than system-reference mode (one short scenario sentence is OK), but the rules still hold: no marketing words, no italic, every count cites a source, no em dashes. **Brand marks** for any product the page references come from `references/external-svgs.md` — don't redraw them.
+
+The density tier here is "explainer poster" — the page reads top-to-bottom as a sequence the reader can scan in under a minute, with the hero cards carrying the ideas, the strip giving the at-a-glance run-through, and the bottom panel anchoring the numbers. Use it when the audience is first-encounter; use the canonical system-reference IA when the audience is already inside the codebase.

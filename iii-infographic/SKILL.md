@@ -45,6 +45,7 @@ Generates a single-page, dense, engineering-poster site for an iii-based project
 | `references/sections.md` | §01–§08 information architecture, component library, snippet map |
 | `references/checklist.md` | Pre-output gate |
 | `references/anti-patterns.md` | Refuse-to-ship list |
+| `references/external-svgs.md` | Where to fetch real product/brand SVG logos (svgl, simpleicons, lucide, heroicons) and how to inline them |
 
 Templates in `templates/index.html` + `templates/section-snippets/*.html`.
 

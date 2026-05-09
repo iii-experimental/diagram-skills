@@ -1,0 +1,136 @@
+<!--
+  EXPLAINER PATTERN · end-to-end horizontal flow strip
+  Use under `numbered-hero-cards.html` to show the full sequence in one glance.
+  9–10 numbered steps, each a small icon + caption, arrows between them.
+
+  The strip is illustrative, not authoritative — keep it tight: one verb per step, one icon,
+  no full sentences. The numbered hero cards above carry the detail.
+-->
+<style>
+  .flow-strip {
+    border: 1px solid var(--line);
+    padding: 22px clamp(16px, 2vw, 28px);
+    background: var(--bg);
+  }
+  .flow-strip .strip-title {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .flow-strip ol {
+    list-style: none; padding: 0; margin: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(80px, 1fr);
+    gap: 0;
+    align-items: start;
+    overflow-x: auto;
+  }
+  .flow-strip li {
+    display: grid;
+    grid-template-rows: 28px 40px auto;
+    align-items: center;
+    text-align: center;
+    padding: 0 8px;
+    position: relative;
+    min-width: 80px;
+  }
+  .flow-strip li:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: 36px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 18px;
+    color: var(--fg-3);
+  }
+  .flow-strip .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 999px;
+    background: var(--bg-2);
+    border: 1px solid var(--line-strong);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; font-weight: 700;
+    color: var(--fg);
+    margin: 0 auto;
+  }
+  .flow-strip .num.accent { color: var(--accent); border-color: var(--accent); }
+  .flow-strip .num.signal { color: var(--signal); border-color: var(--signal); }
+  .flow-strip .icon {
+    width: 32px; height: 32px;
+    margin: 4px auto 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--fg-2);
+  }
+  .flow-strip .caption {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    line-height: 1.35;
+    color: var(--fg-2);
+    margin-top: 8px;
+  }
+</style>
+
+<section id="sec-flow">
+  <div class="sec-head">
+    <span class="sec-eyebrow"><b>§ 0N · END-TO-END</b> · WHAT HAPPENS</span>
+    <span class="sec-counter">0N / 0M</span>
+  </div>
+  <h2 class="sec-h2">[One-line summary of the full path.]</h2>
+  <p class="sub">[How to read the strip. Mono, one line.]</p>
+
+  <div class="flow-strip">
+    <div class="strip-title">Full path · request to response</div>
+    <ol>
+      <li>
+        <span class="num">1</span>
+        <span class="icon"><!-- inline 24×24 SVG icon · fetch from lucide/simpleicons --></span>
+        <span class="caption">[step 1 verb]</span>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <span class="icon"></span>
+        <span class="caption">[step 2 verb]</span>
+      </li>
+      <li>
+        <span class="num accent">3</span>
+        <span class="icon"></span>
+        <span class="caption">[step 3 verb · accent]</span>
+      </li>
+      <li>
+        <span class="num">4</span>
+        <span class="icon"></span>
+        <span class="caption">[step 4 verb]</span>
+      </li>
+      <li>
+        <span class="num signal">5</span>
+        <span class="icon"></span>
+        <span class="caption">[step 5 verb · signal]</span>
+      </li>
+      <li>
+        <span class="num">6</span>
+        <span class="icon"></span>
+        <span class="caption">[step 6 verb]</span>
+      </li>
+      <li>
+        <span class="num">7</span>
+        <span class="icon"></span>
+        <span class="caption">[step 7 verb]</span>
+      </li>
+      <li>
+        <span class="num">8</span>
+        <span class="icon"></span>
+        <span class="caption">[step 8 verb]</span>
+      </li>
+      <li>
+        <span class="num">9</span>
+        <span class="icon"></span>
+        <span class="caption">[step 9 verb]</span>
+      </li>
+    </ol>
+  </div>
+</section>
