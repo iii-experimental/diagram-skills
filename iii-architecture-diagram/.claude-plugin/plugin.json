@@ -1,0 +1,9 @@
+{
+  "name": "iii-architecture-diagram",
+  "description": "Standalone iii architecture diagrams (SVG + optional PNG)",
+  "version": "3.2.0",
+  "author": { "name": "iii", "url": "https://iii.dev" },
+  "repository": "https://github.com/iii-experimental/diagram-skills",
+  "license": "Apache-2.0",
+  "skills": ["./"]
+}

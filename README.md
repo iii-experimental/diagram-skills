@@ -1,13 +1,29 @@
 # diagram-skills
 
-Two skills for documenting [iii](https://iii.dev) projects with a consistent visual vocabulary.
+Four skills for documenting [iii](https://iii.dev) projects with a consistent visual vocabulary.
 
 | Skill | Output | When to use |
 |---|---|---|
 | [`iii-architecture-diagram`](./iii-architecture-diagram/) | `.svg` (+ optional `.png`) | Single-page architecture / mesh / state-machine / layer-stack / editorial diagram |
-| [`iii-infographic`](./iii-infographic/) | self-contained `.html` | Printable system reference (6–8 numbered sections) |
+| [`iii-infographic`](./iii-infographic/) | self-contained `.html` | Printable system reference (6–8 numbered sections); also handles diff reviews, plan reviews, project recaps |
+| [`iii-slides`](./iii-slides/) | self-contained `.html` | Single-file scroll-snap slide deck (100dvh per slide) for talks and demos |
+| [`iii-playground`](./iii-playground/) | self-contained `.html` | Throwaway interactive editor with `copy-as-prompt` export — kanban, tuner, form-editor, split-preview, or curate |
 
-Both skills share the iii editorial register: cream paper canvas (or warm dark), ember accent reserved for one focal element, Inter Tight + JetBrains Mono. Full brand contract in each skill's `SKILL.md`.
+All four skills share the iii editorial register: cream paper canvas (or warm dark), ember accent reserved for one focal element, Inter Tight + JetBrains Mono. Full brand contract in each skill's `SKILL.md` plus its `references/`.
+
+## Commands
+
+| Command | Skill | What it builds |
+|---|---|---|
+| `/iii-diagram <topic>` | iii-architecture-diagram | A single SVG architecture / mesh / layer-stack / state-machine / editorial diagram |
+| `/iii-infographic <project-path>` | iii-infographic | Full §01–§08 system reference HTML page |
+| `/iii-diff-review <git-ref>` | iii-infographic | Before/after infographic with iii vocabulary (no GitHub red/green) |
+| `/iii-plan-review <plan-file>` | iii-infographic | Plan-vs-codebase audit, every claim cited |
+| `/iii-project-recap` | iii-infographic | HEAD-state snapshot for context-switching |
+| `/iii-slides <topic-or-source-file>` | iii-slides | Scroll-snap slide deck |
+| `/iii-playground <task>` | iii-playground | Throwaway HTML editor with `copy-as-prompt` button (pick one of five patterns) |
+
+Slash commands surface in agents that support them. In Claude Code they're namespaced once installed as plugins (`/iii-architecture-diagram:iii-diagram`, etc.). For agents that don't support commands, read the matching `commands/*.md` file and follow the instructions manually — the skill itself (`SKILL.md` + `references/`) is the source of behavior.
 
 ## Patterns
 
@@ -76,19 +92,47 @@ Five diagram patterns ship in `iii-architecture-diagram/assets/`. Every pattern 
 </tr>
 </table>
 
-## Install
+## Templates
 
-### Claude Code CLI
+Every skill ships raw editable scaffolds — copy, edit, ship. Don't recreate the brand contract from scratch.
+
+| Skill | Templates |
+|---|---|
+| `iii-architecture-diagram` | `iii-architecture-diagram/templates/*.svg` (10 files: 5 patterns × cream + dark) |
+| `iii-infographic` | `iii-infographic/templates/index.html` (scaffold) + `iii-infographic/templates/section-snippets/*.html` (9 section starters) |
+| `iii-slides` | `iii-slides/templates/deck.html` (scaffold) + `iii-slides/templates/slide-snippets/*.html` (5 slide types) |
+| `iii-playground` | `iii-playground/templates/playground.html` (scaffold) + `iii-playground/templates/playground-snippets/*.html` (5 patterns) |
+
+## Harness matrix
+
+| Harness | Install | Activation |
+|---|---|---|
+| Claude Code (plugin) | `/plugin marketplace add iii-experimental/diagram-skills` then `/plugin install <skill-name>@iii-diagram-skills` (per skill) | Slash commands surface in the picker |
+| Claude Code (manual) | Symlink each skill into `~/.claude/skills/` (see below) | Description-trigger or slash command |
+| Pi | `pi install git:github.com/iii-experimental/diagram-skills` | `$iii-architecture-diagram` or slash commands |
+| Cursor | Copy `configs/cursor/iii-diagram-skills.mdc` into `.cursor/rules/` | Rules-based guidance (no native skills) |
+| Codex CLI | `cp -r iii-* ~/.codex/skills/` (see `configs/codex/AGENTS.md`) | `$iii-architecture-diagram` or `/prompts:iii-diagram` |
+| OpenCode | Copy each skill into `~/.config/opencode/skill/` (see `configs/opencode/AGENTS.md`) | Skill activation by name |
+| OpenClaw | Lightweight rules guidance (see `configs/openclaw/AGENTS.md`) | Manual workflow |
+| SkillKit (32+ agents) | `npx skillkit install <skill-name> --from <local-path>` | Per-agent activation |
+
+### Claude Code · symlink install
 
 ```bash
 git clone https://github.com/iii-experimental/diagram-skills ~/diagram-skills
 
 # user-level (available in every project)
-ln -s ~/diagram-skills/iii-architecture-diagram ~/.claude/skills/iii-architecture-diagram
-ln -s ~/diagram-skills/iii-infographic         ~/.claude/skills/iii-infographic
+ln -sf ~/diagram-skills/iii-architecture-diagram ~/.claude/skills/iii-architecture-diagram
+ln -sf ~/diagram-skills/iii-infographic         ~/.claude/skills/iii-infographic
+ln -sf ~/diagram-skills/iii-slides              ~/.claude/skills/iii-slides
+ln -sf ~/diagram-skills/iii-playground          ~/.claude/skills/iii-playground
 
-# or project-level
-ln -s ~/diagram-skills/iii-architecture-diagram ./.claude/skills/iii-architecture-diagram
+# or project-local (any repo)
+mkdir -p .claude/skills
+ln -sf ~/diagram-skills/iii-architecture-diagram ./.claude/skills/iii-architecture-diagram
+ln -sf ~/diagram-skills/iii-infographic         ./.claude/skills/iii-infographic
+ln -sf ~/diagram-skills/iii-slides              ./.claude/skills/iii-slides
+ln -sf ~/diagram-skills/iii-playground          ./.claude/skills/iii-playground
 ```
 
 ### SkillKit (Claude Code, Cursor, Codex, Gemini CLI, OpenCode, 27 more)
@@ -97,14 +141,13 @@ ln -s ~/diagram-skills/iii-architecture-diagram ./.claude/skills/iii-architectur
 # from a local clone
 npx skillkit install iii-architecture-diagram --from ~/diagram-skills/iii-architecture-diagram
 npx skillkit install iii-infographic         --from ~/diagram-skills/iii-infographic
+npx skillkit install iii-slides              --from ~/diagram-skills/iii-slides
+npx skillkit install iii-playground          --from ~/diagram-skills/iii-playground
 
 # translate to a different agent format
 npx skillkit translate iii-architecture-diagram --agent cursor
-npx skillkit translate iii-architecture-diagram --agent codex
-npx skillkit translate iii-architecture-diagram --agent opencode
-
-# search the SkillKit marketplace once published
-npx skillkit search iii-architecture-diagram
+npx skillkit translate iii-infographic         --agent codex
+npx skillkit translate iii-slides              --agent opencode
 ```
 
 ### Claude.ai (Pro / Max / Team / Enterprise)
@@ -113,44 +156,36 @@ npx skillkit search iii-architecture-diagram
 cd ~/diagram-skills
 zip -r iii-architecture-diagram.zip iii-architecture-diagram
 zip -r iii-infographic.zip         iii-infographic
+zip -r iii-slides.zip              iii-slides
+zip -r iii-playground.zip          iii-playground
 ```
 
 Upload each zip via **Settings → Capabilities → Skills → + Add**.
 
-### Project-local (any repo)
-
-```bash
-mkdir -p .claude/skills
-git submodule add https://github.com/iii-experimental/diagram-skills .claude/diagram-skills
-ln -s ../diagram-skills/iii-architecture-diagram .claude/skills/iii-architecture-diagram
-ln -s ../diagram-skills/iii-infographic         .claude/skills/iii-infographic
-```
-
 ## Usage
 
 ```
-Use iii-architecture-diagram to draw the sandbox lifecycle for my iii deployment.
-Read the boot log at ~/.agentos/logs/engine.log and pick one focal worker.
-Use the architecture pattern, dark theme.
-```
+/iii-diagram sandbox lifecycle for my iii deployment, dark theme.
 
-```
 Use iii-architecture-diagram to draw a mesh of my narrow workers.
 Spotlight the agent caller. Cream theme.
+
+/iii-infographic ~/agentmemory
+
+/iii-diff-review main
+
+/iii-plan-review ~/.claude/plans/agentmemory-multimodal.md
+
+/iii-project-recap
+
+/iii-slides "iii narrow workers thesis"
+
+/iii-playground reorder these 30 Linear tickets across Now / Next / Later / Cut.
+
+/iii-playground tune the checkout button animation (duration, easing, color).
 ```
 
-```
-Use iii-architecture-diagram to draw the iii engine module stack.
-Show every module from config.yaml as a layer with adapter class + port.
-Focal = the State module.
-```
-
-```
-Use iii-infographic to generate a system reference for ~/agentmemory.
-Read AGENTS.md and the boot log. Pick the binary axis from the code.
-```
-
-The skill emits a single `.svg` (or `.html`) you open in any browser, ship in a deck, or paste into a PR.
+Each command emits a single `.svg` or `.html` you open in any browser, ship in a deck, or paste into a PR.
 
 ## Render to PNG
 

@@ -1,0 +1,22 @@
+<!-- §05 STATE · KV / table / scope reference, grouped by category. -->
+<section id="sec05">
+  <div class="sec-head">
+    <span class="sec-eyebrow"><b>§ 05 · STATE</b> · SCOPES</span>
+    <span class="sec-counter">05 / 08</span>
+  </div>
+  <h2 class="sec-h2">[N] scopes, [M] durable, [K] in-flight.</h2>
+  <p class="sub">Every value the system persists is in one of the rows below. Source: <code class="code-inline">[STATE_FILE]</code>.</p>
+
+  <div class="scroll-x"><table class="data">
+    <caption class="sr-only">State scopes grouped by persistence mode (durable vs in-flight), with key shape, value shape, and mode for each.</caption>
+    <thead>
+      <tr><th>Scope</th><th>Key shape</th><th>Value shape</th><th class="num-col">Mode</th></tr>
+    </thead>
+    <tbody>
+      <tr class="group"><td colspan="4">durable · [N] scopes</td></tr>
+      <tr><td>[scope::name]</td><td>[id_pattern]</td><td>[Type]</td><td class="num-col sig">durable</td></tr>
+      <tr class="group"><td colspan="4">in-flight · [N] scopes</td></tr>
+      <tr><td>[scope::cache]</td><td>[id_pattern]</td><td>[Type]</td><td class="num-col dim">ephemeral</td></tr>
+    </tbody>
+  </table></div>
+</section>

@@ -1,0 +1,22 @@
+---
+description: Use iii-diagram-skills for iii editorial-register diagrams, infographics, and slide decks
+globs: **/*
+alwaysApply: false
+---
+
+Use the canonical `iii-architecture-diagram`, `iii-infographic`, `iii-slides`, and `iii-playground` skills from this repo. Cursor support is rules-based guidance, not native Agent Skills support.
+
+When the user asks for:
+
+- A diagram (SVG or PNG) of an iii deployment, worker, or dataflow → read `iii-architecture-diagram/SKILL.md` and follow its workflow. Templates live in `iii-architecture-diagram/templates/`.
+- A system reference page, diff review, plan review, or project recap → read `iii-infographic/SKILL.md`. Scaffold lives in `iii-infographic/templates/index.html`; section snippets in `iii-infographic/templates/section-snippets/`.
+- A talk deck or presentation → read `iii-slides/SKILL.md`. Scaffold lives in `iii-slides/templates/deck.html`; slide snippets in `iii-slides/templates/slide-snippets/`.
+- A throwaway interactive editor (kanban triage, slider tuner, form editor with constraints, prompt split-preview, dataset curate) → read `iii-playground/SKILL.md`. Scaffold lives in `iii-playground/templates/playground.html`; pattern snippets in `iii-playground/templates/playground-snippets/`. Primary export is `[copy as prompt]` for natural-language paste-back; `[copy as JSON]` is available as an optional second export when the agent expects structured input.
+
+Each skill ships:
+- `SKILL.md` — entrypoint, when-to-use, workflow.
+- `references/*.md` — tokens, grammar, checklist, anti-patterns.
+- `commands/*.md` — slash command templates (manual invocation in Cursor).
+- `templates/*` — copy-paste starter scaffolds.
+
+Generated diagrams and HTML pages should be written next to the source files unless the user specifies otherwise. Open in a browser if Cursor permits shell access; report the file path otherwise.

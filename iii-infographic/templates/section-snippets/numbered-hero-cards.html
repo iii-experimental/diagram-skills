@@ -1,0 +1,99 @@
+<!--
+  EXPLAINER PATTERN · numbered hero cards (4–6 across the page)
+  Use when the infographic explains "how does X work" as a sequence of conceptual steps.
+  Each card: numbered circle (colored per axis), concept title, one-paragraph explanation,
+  optional inline mini-SVG, and a 3–4-bullet detail list.
+
+  Pair with `flow-strip.html` underneath (end-to-end run-through) and a `surfaces-grid.html`
+  bottom panel (by-the-numbers + key-insights + takeaway).
+-->
+<style>
+  .hero-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(14px, 1.6vw, 22px);
+  }
+  .hero-card {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    padding: 18px 18px 16px;
+    display: flex; flex-direction: column;
+    min-height: 0;
+  }
+  .hero-card .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 999px;
+    background: var(--bg-2);
+    border: 1px solid var(--line-strong);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px; font-weight: 700;
+    color: var(--fg);
+    margin-bottom: 12px;
+  }
+  .hero-card .num.accent { background: transparent; color: var(--accent); border-color: var(--accent); }
+  .hero-card .num.signal { background: transparent; color: var(--signal); border-color: var(--signal); }
+  .hero-card h3 {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 16px; font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--fg);
+  }
+  .hero-card .lede {
+    font-size: 13px; line-height: 1.5;
+    color: var(--fg-2);
+    margin: 0 0 12px;
+  }
+  .hero-card .mini {
+    border: 1px dashed var(--line);
+    padding: 12px;
+    margin: 0 0 12px;
+    min-height: 80px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-card ul {
+    list-style: none; padding: 0; margin: auto 0 0;
+    display: grid; gap: 6px;
+  }
+  .hero-card ul li {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; line-height: 1.45;
+    color: var(--fg-2);
+    padding-left: 16px;
+    position: relative;
+  }
+  .hero-card ul li::before {
+    content: '✓';
+    position: absolute; left: 0; top: 0;
+    color: var(--signal);
+    font-weight: 700;
+  }
+  .hero-card ul li.warn::before { content: '✕'; color: var(--accent); }
+</style>
+
+<section id="sec-explainer">
+  <div class="sec-head">
+    <span class="sec-eyebrow"><b>§ 0N · HOW IT WORKS</b> · STEP BY STEP</span>
+    <span class="sec-counter">0N / 0M</span>
+  </div>
+  <h2 class="sec-h2">[The system in [N] steps.]</h2>
+  <p class="sub">[Subtitle introducing the sequence, mono, two lines max.]</p>
+
+  <div class="hero-cards">
+    <div class="hero-card">
+      <span class="num">1</span>
+      <h3>[Step 1 title]</h3>
+      <p class="lede">[One-paragraph plain-prose explanation. Two to four sentences. No marketing.]</p>
+      <div class="mini">
+        <!-- Optional inline mini-SVG (32×32 to ~120×80). Fetch product marks from svgl/simpleicons (see references/external-svgs.md), or hand-author small iii-grammar shapes. -->
+        <span class="mono" style="color: var(--fg-3); font-size: 11px;">[mini-svg or omit]</span>
+      </div>
+      <ul>
+        <li>[Concrete bullet, with a number or file:line.]</li>
+        <li>[Bullet.]</li>
+        <li class="warn">[Bullet that's a caveat or failure mode.]</li>
+      </ul>
+    </div>
+    <!-- Repeat .hero-card per step. 4–6 cards total. Use `.num.accent` on the focal step,
+         `.num.signal` on free-path steps, default circle on neutral steps. -->
+  </div>
+</section>

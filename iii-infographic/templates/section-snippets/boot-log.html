@@ -1,0 +1,20 @@
+<!-- §08 BOOT · annotated boot log + port table. Capture verbatim from project startup. -->
+<section id="sec08">
+  <div class="sec-head">
+    <span class="sec-eyebrow"><b>§ 08 · BOOT</b> · ANNOTATED LOG</span>
+    <span class="sec-counter">08 / 08</span>
+  </div>
+  <h2 class="sec-h2">The boot log is the runtime contract.</h2>
+  <p class="sub">Every count on this page traces to a line below. If the boot log changes, this page changes.</p>
+
+<pre class="boot"><span class="d">$</span> <span class="a">curl -fsSL https://install.iii.dev/iii/main/install.sh | sh</span>
+<span class="c"># installs iii-engine binary to ~/.iii/bin</span>
+
+<span class="d">$</span> iii start
+<span class="c">[YYYY-MM-DD HH:MM:SS]</span> <span class="d">iii</span> engine ready
+<span class="c">[YYYY-MM-DD HH:MM:SS]</span> <span class="d">listening</span> http=<span class="t">[N]</span> stream=<span class="t">[N]</span> ws=<span class="t">49134</span>
+<span class="c">[YYYY-MM-DD HH:MM:SS]</span> <span class="d">workers</span> registered=<span class="t">[N]</span> functions=<span class="t">[N]</span> triggers=<span class="t">[N]</span>
+<span class="c">[YYYY-MM-DD HH:MM:SS]</span> <span class="d">state</span> scopes=<span class="t">[N]</span> mode=<span class="s">durable</span>
+<span class="c">[YYYY-MM-DD HH:MM:SS]</span> <span class="d">surfaces</span> [k1]=<span class="t">[N]</span> [k2]=<span class="t">[N]</span>
+<span class="c">[YYYY-MM-DD HH:MM:SS]</span> <span class="s">ready</span></pre>
+</section>

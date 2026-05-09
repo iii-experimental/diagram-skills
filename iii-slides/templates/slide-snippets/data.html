@@ -1,0 +1,32 @@
+<!-- Data slide. One full-width data table OR one formula block. Title on top, eyebrow above.
+     Use for: API tables, function signatures, weight matrices, benchmark numbers.
+     The deck.html scaffold ships a working sample of this slide type. -->
+<section class="slide slide--data" data-slide="N">
+  <span class="slide-eyebrow">[section · data label]</span>
+  <h2 class="h2" style="font-size: clamp(28px, 4vw, 48px); margin-bottom: 24px;">[One-line claim that ends with a period.]</h2>
+
+  <!-- Option A: data table -->
+  <table class="data-table">
+    <thead>
+      <tr><th>[col 1]</th><th>[col 2]</th><th>[col 3]</th><th>[col 4]</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>[row]</td><td>(args) =&gt; Result</td><td>[worker]</td><td class="acc">HTTP</td></tr>
+      <tr><td>[row]</td><td>(args) =&gt; Result</td><td>[worker]</td><td class="sig">cron</td></tr>
+      <!-- Repeat per row. Use `acc` (ember) on paid path, `sig` (green) on free, `dim` for internal. -->
+    </tbody>
+  </table>
+
+  <!-- Option B: formula block (use instead of the table when the slide is a single equation)
+  <div class="formula" style="margin-top: 8px;">
+    <div class="name">[FORMULA NAME]</div>
+    <div class="expr">
+      [EXPRESSION] <span class="op">(</span>x<span class="op">) =</span>
+      <span class="v">[var]</span><span class="op"> · </span> …
+    </div>
+    <div class="where">
+      <code>[var] = [default]</code>. Source: <code>[FILE_PATH]</code>.
+    </div>
+  </div>
+  -->
+</section>

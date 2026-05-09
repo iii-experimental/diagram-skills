@@ -1,0 +1,19 @@
+<!-- Diagram slide. One inline SVG occupies most of the viewport. Hand-author the SVG using
+     iii-architecture-diagram grammar (type tags, masked arrow labels, ghost numerals).
+     Never embed an external image. -->
+<section class="slide slide--diagram" data-slide="N">
+  <span class="slide-eyebrow">[section · diagram]</span>
+  <h2 class="h2" style="font-size: clamp(24px, 3vw, 36px); margin-bottom: 32px;">[Caption that ends with a period.]</h2>
+  <div style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0;">
+    <svg viewBox="0 0 1240 600" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display:block; max-height: 70vh;">
+      <defs>
+        <marker id="d-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--fg)"/>
+        </marker>
+      </defs>
+      <!-- Authoring rules: see iii-architecture-diagram/references/svg-grammar.md.
+           At minimum: arrows before boxes, type tags above every node, masked arrow labels,
+           ember on one focal element only, 4px grid. -->
+    </svg>
+  </div>
+</section>
