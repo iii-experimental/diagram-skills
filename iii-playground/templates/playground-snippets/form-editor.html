@@ -1,0 +1,145 @@
+<!--
+  FORM-EDITOR snippet · structured config editor with grouped sections, dependencies, diff.
+
+  Export shape:
+    - prompt: "Set these keys: <k>=<v>; remove: <k>"
+    - JSON:   { task, before: { … }, after: { … }, diff: { changed: [k], added: [k], removed: [k] } }
+-->
+<style>
+  .form-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(20px, 3vw, 40px);
+  }
+  .group {
+    border: 1px solid var(--line);
+    padding: 20px;
+  }
+  .group .group-head {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin: 0 0 16px;
+  }
+  .field {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .field:last-child { border-bottom: none; }
+  .field .key {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--fg);
+  }
+  .field .desc {
+    font-size: 12px;
+    color: var(--fg-3);
+    grid-column: 1 / 2;
+    margin-top: -2px;
+  }
+  .field input[type="text"], .field input[type="number"], .field select {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px;
+    background: var(--bg-2);
+    color: var(--fg);
+    border: 1px solid var(--line);
+    padding: 6px 10px;
+  }
+  .field .toggle { display: inline-flex; align-items: center; gap: 6px; }
+  .field input[type="checkbox"] { accent-color: var(--accent); width: 16px; height: 16px; }
+  .field .badge {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border: 1px solid var(--line-strong);
+    color: var(--fg-3);
+  }
+  .field .badge.changed { color: var(--accent); border-color: var(--accent); }
+  .field .badge.warn    { color: var(--accent); border-color: var(--accent); }
+  .field :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<section class="container form-grid">
+  <div class="group">
+    <h2 class="group-head">[GROUP NAME]</h2>
+    <!-- Repeat .field per key. Compute .badge.changed when state.after[key] !== state.before[key]. -->
+    <div class="field">
+      <div>
+        <div class="key">[KEY_NAME]</div>
+        <div class="desc">[one-line description]</div>
+      </div>
+      <input type="text" data-key="[KEY_NAME]" value="[default]" />
+      <span class="badge">[type]</span>
+    </div>
+    <div class="field">
+      <div>
+        <div class="key">[FLAG_NAME]</div>
+        <div class="desc">requires [PREREQUISITE_KEY]</div>
+      </div>
+      <label class="toggle"><input type="checkbox" data-key="[FLAG_NAME]" /> enabled</label>
+      <span class="badge">bool</span>
+    </div>
+  </div>
+</section>
+
+<!--
+<script>
+  const state = {
+    theme: localStorage.getItem('iii-playground-theme') || 'cream',
+    before: { /* prefilled from current config */ },
+    after:  { /* same shape, mutated by user */ },
+  };
+
+  function render() {
+    document.querySelectorAll('[data-key]').forEach(input => {
+      const k = input.dataset.key;
+      const isCheckbox = input.type === 'checkbox';
+      if (isCheckbox) input.checked = !!state.after[k];
+      else input.value = state.after[k] ?? '';
+      const badge = input.closest('.field').querySelector('.badge');
+      const changed = JSON.stringify(state.before[k]) !== JSON.stringify(state.after[k]);
+      badge.classList.toggle('changed', changed);
+    });
+    document.getElementById('counter').textContent = diffCount() + ' changed';
+  }
+
+  function diffCount() {
+    const keys = new Set([...Object.keys(state.before), ...Object.keys(state.after)]);
+    let n = 0;
+    keys.forEach(k => { if (JSON.stringify(state.before[k]) !== JSON.stringify(state.after[k])) n++; });
+    return n;
+  }
+
+  document.querySelectorAll('[data-key]').forEach(input => {
+    input.addEventListener('input', () => {
+      const k = input.dataset.key;
+      state.after[k] = input.type === 'checkbox' ? input.checked : input.value;
+      render();
+    });
+  });
+
+  function exportAsPrompt() {
+    const changed = [], removed = [];
+    new Set([...Object.keys(state.before), ...Object.keys(state.after)]).forEach(k => {
+      if (JSON.stringify(state.before[k]) !== JSON.stringify(state.after[k])) {
+        if (state.after[k] === undefined) removed.push(k);
+        else changed.push(k + '=' + JSON.stringify(state.after[k]));
+      }
+    });
+    return 'Set: ' + (changed.join(', ') || '(none)') +
+           '\nRemove: ' + (removed.join(', ') || '(none)');
+  }
+  function exportAsJson() {
+    return JSON.stringify({ task: '[task]', before: state.before, after: state.after }, null, 2);
+  }
+  render();
+</script>
+-->

@@ -1,0 +1,9 @@
+{
+  "name": "iii-infographic",
+  "description": "Single-page iii system reference infographics, diff reviews, plan reviews, and project recaps",
+  "version": "2.1.0",
+  "author": { "name": "iii", "url": "https://iii.dev" },
+  "repository": "https://github.com/iii-experimental/diagram-skills",
+  "license": "Apache-2.0",
+  "skills": ["./"]
+}

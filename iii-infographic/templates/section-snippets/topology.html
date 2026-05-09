@@ -1,0 +1,47 @@
+<!-- §01 SYSTEM · four-column topology: callers → triggers → functions → state. -->
+<section id="sec01">
+  <div class="sec-head">
+    <span class="sec-eyebrow"><b>§ 01 · SYSTEM</b> · TOPOLOGY</span>
+    <span class="sec-counter">01 / 08</span>
+  </div>
+  <h2 class="sec-h2">Callers cross four columns to reach state.</h2>
+  <p class="sub">Every request flows: caller → trigger → function → state. The four columns below are the iii substrate; everything else is application logic that lives inside it. Source: <code class="code-inline">[ENTRYPOINT_FILE]</code>.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 1240 380" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--fg)"/></marker>
+        <marker id="arr-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/></marker>
+        <marker id="arr-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--signal)"/></marker>
+      </defs>
+      <line x1="310" y1="40" x2="310" y2="350" stroke="var(--line)" stroke-dasharray="2 4"/>
+      <line x1="620" y1="40" x2="620" y2="350" stroke="var(--line)" stroke-dasharray="2 4"/>
+      <line x1="930" y1="40" x2="930" y2="350" stroke="var(--line)" stroke-dasharray="2 4"/>
+      <text x="155"  y="30" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--fg-3)" text-anchor="middle" letter-spacing="2">CALLERS</text>
+      <text x="465"  y="30" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--fg-3)" text-anchor="middle" letter-spacing="2">TRIGGERS</text>
+      <text x="775"  y="30" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--fg-3)" text-anchor="middle" letter-spacing="2">FUNCTIONS</text>
+      <text x="1085" y="30" font-family="JetBrains Mono, monospace" font-size="10" fill="var(--fg-3)" text-anchor="middle" letter-spacing="2">STATE / STREAMS</text>
+
+      <!-- Replace the four boxes + arrows below with project-specific values. -->
+      <rect x="35"  y="80" width="240" height="48" fill="var(--bg-2)" stroke="var(--fg)" stroke-width="1.4"/>
+      <text x="155" y="100" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">[CALLER]</text>
+      <text x="155" y="116" font-family="JetBrains Mono, monospace" font-size="9"  fill="var(--fg-3)" text-anchor="middle">[caller subtitle]</text>
+
+      <rect x="345" y="80" width="240" height="48" fill="var(--bg-2)" stroke="var(--accent)" stroke-width="1.4"/>
+      <text x="465" y="100" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">[TRIGGER]</text>
+      <text x="465" y="116" font-family="JetBrains Mono, monospace" font-size="9"  fill="var(--accent)" text-anchor="middle">[trigger kind]</text>
+
+      <rect x="655" y="80" width="240" height="48" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.4"/>
+      <text x="775" y="100" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">[FUNCTION]</text>
+      <text x="775" y="116" font-family="JetBrains Mono, monospace" font-size="9"  fill="var(--fg-3)" text-anchor="middle">[N sibling fns]</text>
+
+      <rect x="965" y="80" width="240" height="48" fill="var(--bg-2)" stroke="var(--fg)" stroke-width="1.4"/>
+      <text x="1085" y="100" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">[STATE]</text>
+      <text x="1085" y="116" font-family="JetBrains Mono, monospace" font-size="9"  fill="var(--fg-3)" text-anchor="middle">[scope kind]</text>
+
+      <line x1="275" y1="104" x2="345" y2="104" stroke="var(--fg)"     stroke-width="1.4" marker-end="url(#arr)"/>
+      <line x1="585" y1="104" x2="655" y2="104" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#arr-a)"/>
+      <line x1="895" y1="104" x2="965" y2="104" stroke="var(--fg)"     stroke-width="1.4" marker-end="url(#arr)"/>
+    </svg>
+  </div>
+</section>

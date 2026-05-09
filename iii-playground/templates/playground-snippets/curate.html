@@ -1,0 +1,149 @@
+<!--
+  CURATE snippet · approve / reject / tag rows in a flat list. Keyboard-first.
+
+  Export shape:
+    - prompt: "Approved: <id>, <id>; Rejected: <id>; Tagged-X: <id>"
+    - JSON:   { task, items: [{ id, status, tags: [string], note }] }
+-->
+<style>
+  .curate { display: grid; gap: 10px; }
+  .curate .row {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: start;
+    border: 1px solid var(--line);
+    padding: 12px 14px;
+    background: var(--bg);
+  }
+  .curate .row.approved { border-color: var(--signal); }
+  .curate .row.rejected { border-color: var(--fg-3); opacity: 0.6; }
+  .curate .row.focused  { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .curate .row .id {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--fg-3);
+    padding-top: 2px;
+  }
+  .curate .row .body { font-size: 14px; line-height: 1.45; }
+  .curate .row .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .curate .row .tag {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    border: 1px solid var(--line-strong);
+    padding: 2px 6px;
+  }
+  .curate .row .actions { display: flex; gap: 6px; }
+  .curate .btn {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    background: transparent;
+    color: var(--fg-2);
+    border: 1px solid var(--line-strong);
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+  .curate .btn:hover { color: var(--fg); }
+  .curate .btn.active.approve { background: var(--signal); color: var(--bg); border-color: var(--signal); }
+  .curate .btn.active.reject  { background: var(--fg-3); color: var(--bg); border-color: var(--fg-3); }
+  .curate .keys {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--fg-3);
+    padding: 8px 0;
+  }
+  .curate .keys kbd {
+    border: 1px solid var(--line-strong);
+    padding: 1px 6px;
+    margin-right: 4px;
+  }
+</style>
+
+<section class="container curate" id="curate">
+  <div class="keys"><kbd>j</kbd>/<kbd>k</kbd> next/prev · <kbd>a</kbd> approve · <kbd>r</kbd> reject · <kbd>t</kbd> tag</div>
+  <!-- Rows rendered by JS from state.items -->
+</section>
+
+<!--
+<script>
+  const state = {
+    theme: localStorage.getItem('iii-playground-theme') || 'cream',
+    items: [
+      { id: 'EX-001', body: '[content of row 1]', status: null, tags: [] },
+      // …
+    ],
+    focus: 0,
+  };
+
+  const root = document.getElementById('curate');
+
+  function render() {
+    root.querySelectorAll('.row').forEach(r => r.remove());
+    state.items.forEach((it, i) => {
+      const row = document.createElement('div');
+      row.className = 'row' +
+        (it.status === 'approved' ? ' approved' : '') +
+        (it.status === 'rejected' ? ' rejected' : '') +
+        (i === state.focus ? ' focused' : '');
+      row.innerHTML =
+        '<div class="id">' + it.id + '</div>' +
+        '<div class="body">' + it.body +
+          '<div class="tags">' + it.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div>' +
+        '</div>' +
+        '<div class="actions">' +
+          '<button class="btn approve' + (it.status === 'approved' ? ' active' : '') + '" data-i="' + i + '" data-act="approve">approve</button>' +
+          '<button class="btn reject'  + (it.status === 'rejected' ? ' active' : '') + '" data-i="' + i + '" data-act="reject">reject</button>' +
+          '<button class="btn"          data-i="' + i + '" data-act="tag">tag</button>' +
+        '</div>';
+      root.appendChild(row);
+    });
+    bindButtons();
+    const n = state.items.filter(i => i.status === 'approved').length;
+    document.getElementById('counter').textContent = n + ' / ' + state.items.length + ' approved';
+  }
+
+  function bindButtons() {
+    root.querySelectorAll('.btn').forEach(b => {
+      b.addEventListener('click', () => act(+b.dataset.i, b.dataset.act));
+    });
+  }
+
+  function act(i, what) {
+    const it = state.items[i];
+    if (what === 'approve') it.status = it.status === 'approved' ? null : 'approved';
+    else if (what === 'reject') it.status = it.status === 'rejected' ? null : 'rejected';
+    else if (what === 'tag') {
+      const t = prompt('tag for ' + it.id + ':', '');
+      if (t && t.trim()) it.tags.push(t.trim());
+    }
+    state.focus = i;
+    render();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, textarea')) return;
+    if (e.key === 'j') { state.focus = Math.min(state.items.length - 1, state.focus + 1); render(); }
+    else if (e.key === 'k') { state.focus = Math.max(0, state.focus - 1); render(); }
+    else if (e.key === 'a') { act(state.focus, 'approve'); }
+    else if (e.key === 'r') { act(state.focus, 'reject'); }
+    else if (e.key === 't') { act(state.focus, 'tag'); }
+  });
+
+  function exportAsPrompt() {
+    const approved = state.items.filter(i => i.status === 'approved').map(i => i.id);
+    const rejected = state.items.filter(i => i.status === 'rejected').map(i => i.id);
+    return 'Approved: ' + (approved.join(', ') || '(none)') +
+           '\nRejected: ' + (rejected.join(', ') || '(none)');
+  }
+  function exportAsJson() {
+    return JSON.stringify({ task: '[task]', items: state.items }, null, 2);
+  }
+
+  render();
+</script>
+-->

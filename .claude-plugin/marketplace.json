@@ -1,0 +1,62 @@
+{
+  "name": "iii-diagram-skills",
+  "owner": {
+    "name": "iii-experimental",
+    "url": "https://github.com/iii-experimental"
+  },
+  "metadata": {
+    "description": "iii editorial-register skills: architecture diagrams, system-reference infographics, and scroll-snap slide decks",
+    "version": "1.0.0",
+    "pluginRoot": "./"
+  },
+  "plugins": [
+    {
+      "name": "iii-architecture-diagram",
+      "source": "./iii-architecture-diagram",
+      "description": "Standalone iii architecture diagrams (SVG + optional PNG). One focal element, max 9 nodes, ember accent on the iii primary path. Cream paper or warm dark.",
+      "version": "3.2.0",
+      "author": { "name": "iii", "url": "https://iii.dev" },
+      "repository": "https://github.com/iii-experimental/diagram-skills",
+      "license": "Apache-2.0",
+      "keywords": ["diagram", "svg", "architecture", "iii"],
+      "category": "visualization",
+      "tags": ["diagrams", "svg", "architecture", "iii.dev"]
+    },
+    {
+      "name": "iii-infographic",
+      "source": "./iii-infographic",
+      "description": "Single-page iii system reference infographics. Six to eight numbered sections, real numbers from code, cream + dark themes. Also handles diff reviews, plan reviews, and project recaps.",
+      "version": "2.1.0",
+      "author": { "name": "iii", "url": "https://iii.dev" },
+      "repository": "https://github.com/iii-experimental/diagram-skills",
+      "license": "Apache-2.0",
+      "keywords": ["infographic", "html", "system-reference", "iii"],
+      "category": "visualization",
+      "tags": ["infographic", "html", "diff-review", "plan-review", "iii.dev"]
+    },
+    {
+      "name": "iii-slides",
+      "source": "./iii-slides",
+      "description": "Single-file scroll-snap slide deck for iii talks and demos. 100dvh per slide, cream + dark themes, no auto-advance, ember accent anchored to a binary axis.",
+      "version": "1.0.0",
+      "author": { "name": "iii", "url": "https://iii.dev" },
+      "repository": "https://github.com/iii-experimental/diagram-skills",
+      "license": "Apache-2.0",
+      "keywords": ["slides", "deck", "presentation", "iii"],
+      "category": "visualization",
+      "tags": ["slides", "deck", "scroll-snap", "iii.dev"]
+    },
+    {
+      "name": "iii-playground",
+      "source": "./iii-playground",
+      "description": "Throwaway single-file HTML editors with copy-as-prompt export. Five patterns: kanban (drag triage), tuner (sliders + live preview), form-editor (config with constraints), split-preview (text + live render), curate (approve/reject/tag). Same iii editorial register as the rest of the bundle.",
+      "version": "1.0.0",
+      "author": { "name": "iii", "url": "https://iii.dev" },
+      "repository": "https://github.com/iii-experimental/diagram-skills",
+      "license": "Apache-2.0",
+      "keywords": ["playground", "editor", "tuner", "kanban", "iii"],
+      "category": "visualization",
+      "tags": ["playground", "interactive", "editor", "tuner", "iii.dev"]
+    }
+  ]
+}

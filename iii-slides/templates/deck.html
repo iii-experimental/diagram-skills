@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en" data-theme="cream">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[project] / deck · iii</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+:root[data-theme="cream"] {
+  --bg:        #f2ede1;
+  --bg-2:      #ebe5d4;
+  --paper-grid: rgba(12, 11, 10, 0.045);
+  --fg:        #0c0b0a;
+  --fg-2:      rgba(12, 11, 10, 0.74);
+  --fg-3:      rgba(12, 11, 10, 0.5);
+  --line:        rgba(12, 11, 10, 0.14);
+  --line-strong: rgba(12, 11, 10, 0.26);
+  --accent:    oklch(0.62 0.16 45);
+  --signal:    oklch(0.55 0.13 155);
+}
+:root[data-theme="dark"] {
+  --bg:        #0d0c0a;
+  --bg-2:      #15140f;
+  --paper-grid: rgba(232, 226, 211, 0.045);
+  --fg:        #efe9d8;
+  --fg-2:      rgba(239, 233, 216, 0.78);
+  --fg-3:      rgba(239, 233, 216, 0.52);
+  --line:        rgba(239, 233, 216, 0.12);
+  --line-strong: rgba(239, 233, 216, 0.22);
+  --accent:    oklch(0.72 0.16 45);
+  --signal:    oklch(0.72 0.13 155);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-image:
+    linear-gradient(to right, var(--paper-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--paper-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+/* topnav */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px clamp(20px, 4vw, 48px);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.topnav .brand { color: var(--fg); }
+.topnav .brand b { font-weight: 700; }
+.topnav .right { display: flex; gap: 18px; align-items: center; color: var(--fg-2); }
+.topnav .counter { font-variant-numeric: tabular-nums; }
+.theme-btn {
+  font-family: inherit; font-size: 12px;
+  background: transparent;
+  color: var(--fg-2);
+  border: 1px solid var(--line);
+  padding: 6px 12px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+}
+.theme-btn:hover { color: var(--fg); border-color: var(--line-strong); }
+
+/* deck */
+.deck {
+  height: 100dvh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.slide {
+  height: 100dvh;
+  scroll-snap-align: start;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(80px, 8vh, 120px) clamp(40px, 8vw, 120px) clamp(40px, 6vh, 80px);
+  isolation: isolate;
+}
+
+/* eyebrow + counter inside slide */
+.slide-eyebrow {
+  position: absolute;
+  top: clamp(80px, 8vh, 120px);
+  left: clamp(40px, 8vw, 120px);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* type scale */
+.display {
+  font-size: clamp(48px, 10vw, 120px);
+  font-weight: 600;
+  letter-spacing: -2px;
+  line-height: 1;
+  text-wrap: balance;
+  margin: 0 0 24px;
+}
+.display .ghost { color: var(--fg-3); font-weight: 500; }
+.h2 {
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.05;
+  text-wrap: balance;
+  margin: 0 0 24px;
+}
+.body {
+  font-size: clamp(18px, 1.6vw, 24px);
+  line-height: 1.5;
+  color: var(--fg-2);
+  max-width: 60ch;
+  margin: 0 0 24px;
+}
+
+/* legend (title slide) */
+.legend {
+  display: flex; flex-wrap: wrap; gap: 14px 28px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--fg-2);
+  letter-spacing: 0.04em;
+  margin-top: 28px;
+}
+.legend .key { display: inline-flex; align-items: center; gap: 8px; }
+.legend .swatch { width: 12px; height: 12px; display: inline-block; border: 1px solid var(--line-strong); }
+.legend .swatch.accent { background: var(--accent); border-color: var(--accent); }
+.legend .swatch.signal { background: var(--signal); border-color: var(--signal); }
+
+/* data slide */
+.data-table {
+  width: min(1320px, 94vw);
+  border: 1px solid var(--line-strong);
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(14px, 1.2vw, 18px);
+}
+.data-table th, .data-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.data-table th {
+  font-size: clamp(10px, 0.9vw, 12px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  background: var(--bg-2);
+  font-weight: 500;
+}
+.data-table .acc { color: var(--accent); }
+.data-table .sig { color: var(--signal); }
+.data-table .dim { color: var(--fg-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .deck { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <span class="brand"><b>iii</b> · [project]</span>
+  <div class="right">
+    <span class="counter" id="counter">01 / 03</span>
+    <button class="theme-btn" id="theme-cycle" type="button">theme · cream</button>
+  </div>
+</nav>
+
+<div class="deck" id="deck">
+
+  <!-- ============== SLIDE 1 · TITLE ============== -->
+  <section class="slide slide--title" data-slide="1">
+    <span class="slide-eyebrow">[deck name] · iii</span>
+    <h1 class="display">[Deck title <span class="ghost">/ subtitle</span>].</h1>
+    <p class="body mono">[ONE-LINE SUMMARY · MECHANISM · NOT MARKETING].</p>
+    <div class="legend">
+      <span class="key"><span class="swatch signal"></span>[FREE / BUILT-IN AXIS]</span>
+      <span class="key"><span class="swatch accent"></span>[PAID / COMPOSABLE AXIS]</span>
+    </div>
+  </section>
+
+  <!-- ============== SLIDE 2 · CONTENT ============== -->
+  <section class="slide slide--content" data-slide="2">
+    <span class="slide-eyebrow">[section · qualifier]</span>
+    <h2 class="h2">[One-sentence assertion that ends with a period.]</h2>
+    <p class="body">[Supporting paragraph. Two to four lines. Numbers carry the prose. No marketing words.]</p>
+  </section>
+
+  <!-- ============== SLIDE 3 · DATA ============== -->
+  <section class="slide slide--data" data-slide="3">
+    <span class="slide-eyebrow">[primitives · function signatures]</span>
+    <h2 class="h2">[N] functions, [M] workers.</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Function</th><th>Signature</th><th>Worker</th><th>Trigger</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>[fn.name]</td><td>(args) =&gt; Result</td><td>[worker]</td><td class="acc">HTTP</td></tr>
+        <tr><td>[fn.name]</td><td>(args) =&gt; Result</td><td>[worker]</td><td class="sig">cron</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('theme-cycle');
+  var root = document.documentElement;
+  var stored = localStorage.getItem('iii-slides-theme');
+  if (stored) root.setAttribute('data-theme', stored);
+  function render() {
+    btn.textContent = 'theme · ' + (root.getAttribute('data-theme') || 'cream');
+  }
+  render();
+  btn.addEventListener('click', function () {
+    var current = root.getAttribute('data-theme') || 'cream';
+    var next = current === 'cream' ? 'dark' : 'cream';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('iii-slides-theme', next);
+    render();
+  });
+
+  var counter = document.getElementById('counter');
+  var slides = document.querySelectorAll('.slide');
+  var total = slides.length;
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function update(idx) {
+    counter.textContent = pad(idx) + ' / ' + pad(total);
+  }
+  update(1);
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        var idx = parseInt(e.target.getAttribute('data-slide'), 10) || 1;
+        update(idx);
+      }
+    });
+  }, { root: document.getElementById('deck'), threshold: 0.6 });
+  slides.forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>

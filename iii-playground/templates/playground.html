@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en" data-theme="cream">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[task] · iii playground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<!--
+  iii-playground export contract:
+  - [copy as prompt]: a natural-language paragraph the agent can act on directly.
+  - [copy as JSON]:   the canonical shape { task, values, items, … } for programmatic use.
+  Replace the placeholders below before shipping.
+-->
+<style>
+:root[data-theme="cream"] {
+  --bg:        #f2ede1;
+  --bg-2:      #ebe5d4;
+  --paper-grid: rgba(12, 11, 10, 0.045);
+  --fg:        #0c0b0a;
+  --fg-2:      rgba(12, 11, 10, 0.74);
+  --fg-3:      rgba(12, 11, 10, 0.5);
+  --line:        rgba(12, 11, 10, 0.14);
+  --line-strong: rgba(12, 11, 10, 0.26);
+  --accent:    oklch(0.62 0.16 45);
+  --signal:    oklch(0.55 0.13 155);
+}
+:root[data-theme="dark"] {
+  --bg:        #0d0c0a;
+  --bg-2:      #15140f;
+  --paper-grid: rgba(232, 226, 211, 0.045);
+  --fg:        #efe9d8;
+  --fg-2:      rgba(239, 233, 216, 0.78);
+  --fg-3:      rgba(239, 233, 216, 0.52);
+  --line:        rgba(239, 233, 216, 0.12);
+  --line-strong: rgba(239, 233, 216, 0.22);
+  --accent:    oklch(0.72 0.16 45);
+  --signal:    oklch(0.72 0.13 155);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; min-height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  background-image:
+    linear-gradient(to right, var(--paper-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--paper-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+.container { width: min(1320px, 94vw); margin: 0 auto; }
+
+/* topnav */
+.topnav {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px clamp(20px, 4vw, 48px);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.topnav .brand b { font-weight: 700; }
+.theme-btn {
+  font-family: inherit; font-size: 12px;
+  background: transparent;
+  color: var(--fg-2);
+  border: 1px solid var(--line);
+  padding: 6px 12px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+}
+.theme-btn:hover { color: var(--fg); border-color: var(--line-strong); }
+
+/* title block */
+.title-block {
+  padding: clamp(28px, 4vh, 48px) clamp(20px, 4vw, 48px) 8px;
+}
+.title-block h1 {
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0 0 8px;
+}
+.title-block .summary {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--fg-2);
+  margin: 0;
+  max-width: 80ch;
+}
+
+/* main body — replaced per pattern */
+main {
+  flex: 1;
+  padding: clamp(16px, 2vh, 24px) clamp(20px, 4vw, 48px) 96px;
+}
+
+/* === DEFAULT TUNER PATTERN (replace per snippet) =========================== */
+.tuner-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+}
+.controls {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--line);
+  padding: 20px;
+}
+.control {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 16px;
+  align-items: center;
+}
+.control label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.control .value {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+.control input[type="range"] { grid-column: 1 / -1; width: 100%; accent-color: var(--accent); }
+.control input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.preview {
+  border: 1px solid var(--line);
+  padding: 32px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 260px;
+}
+.preview-target {
+  width: 120px; height: 120px;
+  background: var(--accent);
+  border-radius: 12px;
+}
+
+/* === EXPORT BAR =========================================================== */
+.export-bar {
+  position: sticky; bottom: 0; z-index: 30;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid var(--line-strong);
+  padding: 16px clamp(20px, 4vw, 48px);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.export-btn {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--accent);
+  padding: 10px 18px;
+  cursor: pointer;
+}
+.export-btn:hover { filter: brightness(1.05); }
+.export-btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.export-btn--secondary {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--line-strong);
+}
+.export-status {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--fg-3);
+}
+.export-status.ok { color: var(--signal); }
+
+@media (max-width: 720px) {
+  .tuner-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <span class="brand"><b>iii</b> · playground · [task]</span>
+  <button class="theme-btn" id="theme-cycle" type="button">theme · cream</button>
+</nav>
+
+<header class="title-block">
+  <h1>[Task title — what the user is here to do.]</h1>
+  <p class="summary">[ONE-LINE SUMMARY · WHAT THE EXPORT WILL CONTAIN].</p>
+</header>
+
+<main>
+  <!-- ============== TUNER PATTERN (default) ==============
+       Swap this <section> for one of:
+       templates/playground-snippets/{kanban,tuner,form-editor,split-preview,curate}.html
+       Update the export functions to match.
+  -->
+  <section class="container tuner-grid">
+    <div class="controls">
+      <div class="control">
+        <label for="x">size · px</label>
+        <span class="value" id="x-value">120</span>
+        <input type="range" id="x" min="40" max="240" value="120" step="4" />
+      </div>
+      <div class="control">
+        <label for="y">radius · px</label>
+        <span class="value" id="y-value">12</span>
+        <input type="range" id="y" min="0" max="80" value="12" step="2" />
+      </div>
+      <div class="control">
+        <label for="rot">rotation · deg</label>
+        <span class="value" id="rot-value">0</span>
+        <input type="range" id="rot" min="0" max="360" value="0" step="1" />
+      </div>
+    </div>
+    <div class="preview">
+      <div class="preview-target" id="preview-target"></div>
+    </div>
+  </section>
+</main>
+
+<div class="export-bar">
+  <button class="export-btn" id="copy-prompt" type="button">copy as prompt</button>
+  <button class="export-btn export-btn--secondary" id="copy-json" type="button">copy as JSON</button>
+  <span class="export-status mono" id="status"><span id="counter">3 values</span></span>
+</div>
+
+<script>
+(function () {
+  // ---------- state ----------
+  const state = {
+    theme: localStorage.getItem('iii-playground-theme') || 'cream',
+    values: { x: 120, y: 12, rot: 0 },
+  };
+
+  // ---------- theme ----------
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('theme-cycle');
+  function renderTheme() {
+    root.setAttribute('data-theme', state.theme);
+    themeBtn.textContent = 'theme · ' + state.theme;
+  }
+  themeBtn.addEventListener('click', function () {
+    state.theme = state.theme === 'cream' ? 'dark' : 'cream';
+    localStorage.setItem('iii-playground-theme', state.theme);
+    renderTheme();
+  });
+  renderTheme();
+
+  // ---------- pattern: tuner ----------
+  const target = document.getElementById('preview-target');
+  ['x', 'y', 'rot'].forEach(function (k) {
+    const input = document.getElementById(k);
+    const valueEl = document.getElementById(k + '-value');
+    input.addEventListener('input', function () {
+      state.values[k] = Number(input.value);
+      valueEl.textContent = String(state.values[k]);
+      render();
+    });
+  });
+
+  function render() {
+    const { x, y, rot } = state.values;
+    target.style.width = x + 'px';
+    target.style.height = x + 'px';
+    target.style.borderRadius = y + 'px';
+    target.style.transform = 'rotate(' + rot + 'deg)';
+  }
+  render();
+
+  // ---------- export ----------
+  function exportAsPrompt() {
+    const { x, y, rot } = state.values;
+    return 'Use these values for the [task]: size=' + x + 'px, radius=' + y + 'px, rotation=' + rot + 'deg.';
+  }
+  function exportAsJson() {
+    return JSON.stringify({ task: '[task]', values: state.values }, null, 2);
+  }
+
+  const status = document.getElementById('status');
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      status.textContent = 'copied';
+      status.classList.add('ok');
+      setTimeout(function () {
+        status.textContent = '3 values';
+        status.classList.remove('ok');
+      }, 1400);
+    } catch (e) {
+      status.textContent = 'copy failed';
+    }
+  }
+
+  document.getElementById('copy-prompt').addEventListener('click', function () { copyText(exportAsPrompt()); });
+  document.getElementById('copy-json').addEventListener('click', function () { copyText(exportAsJson()); });
+})();
+</script>
+</body>
+</html>

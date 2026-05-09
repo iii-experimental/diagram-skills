@@ -1,0 +1,36 @@
+<!-- §06 TIERS · derivation cascade. Use only when the system has a real cascade
+     (e.g. cache → memory → disk → network, or local → CDN → origin). Skip otherwise. -->
+<section id="sec06">
+  <div class="sec-head">
+    <span class="sec-eyebrow"><b>§ 06 · TIERS</b> · CASCADE</span>
+    <span class="sec-counter">06 / 08</span>
+  </div>
+  <h2 class="sec-h2">[N] tiers, fastest first, slowest last.</h2>
+  <p class="sub">[How the cascade chooses a tier — short-circuit rules, fallback rules.] Source: <code class="code-inline">[CASCADE_FILE]</code>.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 1240 220" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;">
+      <defs>
+        <marker id="t-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--fg)"/></marker>
+      </defs>
+      <!-- Tier boxes left-to-right, with mono labels above and latency caption below. -->
+      <rect x="40"   y="80" width="200" height="60" fill="var(--bg-2)" stroke="var(--signal)" stroke-width="1.4"/>
+      <text x="140"  y="106" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">[TIER 1]</text>
+      <text x="140"  y="124" font-family="JetBrains Mono, monospace" font-size="9"  fill="var(--signal)" text-anchor="middle">[hit: [latency]]</text>
+
+      <rect x="320"  y="80" width="200" height="60" fill="var(--bg-2)" stroke="var(--fg-2)" stroke-width="1.2"/>
+      <text x="420"  y="106" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">[TIER 2]</text>
+
+      <rect x="600"  y="80" width="200" height="60" fill="var(--bg-2)" stroke="var(--fg-2)" stroke-width="1.2"/>
+      <text x="700"  y="106" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">[TIER 3]</text>
+
+      <rect x="880"  y="80" width="200" height="60" fill="var(--bg-2)" stroke="var(--accent)" stroke-width="1.4"/>
+      <text x="980"  y="106" font-family="JetBrains Mono, monospace" font-size="11" fill="var(--fg)" font-weight="700" text-anchor="middle">[TIER 4]</text>
+      <text x="980"  y="124" font-family="JetBrains Mono, monospace" font-size="9"  fill="var(--accent)" text-anchor="middle">[miss: [cost]]</text>
+
+      <line x1="240" y1="110" x2="320"  y2="110" stroke="var(--fg)" stroke-width="1.2" marker-end="url(#t-arr)"/>
+      <line x1="520" y1="110" x2="600"  y2="110" stroke="var(--fg)" stroke-width="1.2" marker-end="url(#t-arr)"/>
+      <line x1="800" y1="110" x2="880"  y2="110" stroke="var(--fg)" stroke-width="1.2" marker-end="url(#t-arr)"/>
+    </svg>
+  </div>
+</section>
