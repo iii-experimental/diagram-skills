@@ -31,7 +31,7 @@ Generates a single-file HTML scroll-snap slide deck. The output is one self-cont
 2. **Pick the binary axis** — the same `--accent` (paid / opt-in / composable) vs `--signal` (free / built-in / always-on) binding from `iii-infographic`. State it on the title slide's legend.
 3. **Plan layouts** — for each slide, pick a slide type from `references/slide-grammar.md`: title, content, diagram, quote, two-column, data. Vary across the sequence.
 4. **Open the scaffold** — `templates/deck.html` ships scroll-snap container + topnav theme cycle + 3 sample slides wired up.
-5. **Pull snippets** — `templates/slide-snippets/{title,content,diagram,quote,two-column}.html` for additional slides.
+5. **Pull snippets** — `templates/slide-snippets/{title,content,diagram,quote,two-column,data}.html` for additional slides.
 6. **Walk the checklist** — `references/checklist.md`. Refuse anything in `references/anti-patterns.md`.
 
 ## References

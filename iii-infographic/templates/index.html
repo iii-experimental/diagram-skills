@@ -170,6 +170,11 @@ section:first-of-type { border-top: none; }
 
 /* tables */
 .scroll-x { overflow-x: auto; border: 1px solid var(--line-strong); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
 table.data {
   width: 100%; border-collapse: collapse;
   font-family: 'JetBrains Mono', monospace; font-size: 12px;

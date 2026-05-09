@@ -13,7 +13,7 @@ Read in order before writing HTML:
 Then:
 
 - Open `templates/deck.html` as the scaffold (scroll-snap container, topnav theme cycle, 3 sample slides).
-- For each planned slide, pull a snippet from `templates/slide-snippets/{title,content,diagram,quote,two-column}.html`.
+- For each planned slide, pull a snippet from `templates/slide-snippets/{title,content,diagram,quote,two-column,data}.html`.
 - Fill placeholders with values from the source. Numbers must trace to source files or boot-log lines.
 - Pick the binary axis (`--accent` paid/composable vs `--signal` free/built-in) and bind it on the title slide's legend.
 - Vary slide types across the sequence. Five identical content slides in a row is a deck failure.

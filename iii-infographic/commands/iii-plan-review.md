@@ -15,7 +15,7 @@ Workflow:
 
 Section plan:
 
-```
+```text
 HEADER         · plan title + verification summary (N claims · M verified · K blocked)
 § 01  PLAN     · claim inventory table — claim · evidence · status
 § 02  SURFACE  · new functions/triggers the plan introduces vs ones already present

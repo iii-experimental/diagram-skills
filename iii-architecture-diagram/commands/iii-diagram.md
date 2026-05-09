@@ -19,4 +19,14 @@ Then:
 
 Before declaring done, walk every checkbox in `references/checklist.md`. Refuse to ship if anything in `references/anti-patterns.md` is on the page.
 
-Output `<project>-architecture.svg` next to the source files. If the user wants a raster: `rsvg-convert -w 3840 -o <project>-architecture.png <project>-architecture.svg`.
+Output filename: `<slug>-architecture.svg`, written next to the source files.
+
+Derive `<slug>` deterministically:
+
+1. If the user passed an explicit name in `$@` (e.g. `agentmemory`), lowercase it, replace spaces and `/` with `-`, strip any other non-alphanumeric character — that's the slug.
+2. Else use the basename of the current working directory under the same normalization.
+3. Else fall back to `iii-architecture`.
+
+Example: `$@ = "AgentMemory cache layer"` → slug `agentmemory-cache-layer` → file `agentmemory-cache-layer-architecture.svg`.
+
+For a raster: `rsvg-convert -w 3840 -o <slug>-architecture.png <slug>-architecture.svg`.

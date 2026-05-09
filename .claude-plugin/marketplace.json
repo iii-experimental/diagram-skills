@@ -5,7 +5,7 @@
     "url": "https://github.com/iii-experimental"
   },
   "metadata": {
-    "description": "iii editorial-register skills: architecture diagrams, system-reference infographics, and scroll-snap slide decks",
+    "description": "iii editorial-register skills: architecture diagrams, system-reference infographics, scroll-snap slide decks, and throwaway interactive HTML editors with copy-as-prompt export",
     "version": "1.0.0",
     "pluginRoot": "./"
   },

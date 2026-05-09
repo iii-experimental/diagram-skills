@@ -3,6 +3,7 @@ Use the canonical iii diagram skills from this repo: `iii-architecture-diagram`,
 For OpenCode/opencode, the observed native skill path is `~/.config/opencode/skill/`. Copy each skill directory under that path:
 
 ```bash
+mkdir -p ~/.config/opencode/skill
 cp -r iii-architecture-diagram ~/.config/opencode/skill/
 cp -r iii-infographic         ~/.config/opencode/skill/
 cp -r iii-slides              ~/.config/opencode/skill/
@@ -12,6 +13,7 @@ cp -r iii-playground          ~/.config/opencode/skill/
 Optional command templates may be copied to `~/.config/opencode/command/` if your build supports them:
 
 ```bash
+mkdir -p ~/.config/opencode/command
 cp iii-architecture-diagram/commands/*.md ~/.config/opencode/command/
 cp iii-infographic/commands/*.md         ~/.config/opencode/command/
 cp iii-slides/commands/*.md              ~/.config/opencode/command/

@@ -3,6 +3,7 @@ Use the canonical iii diagram skills from this repo: `iii-architecture-diagram`,
 For Codex CLI, copy the skill directories to `~/.codex/skills/`:
 
 ```bash
+mkdir -p ~/.codex/skills
 cp -r iii-architecture-diagram ~/.codex/skills/
 cp -r iii-infographic         ~/.codex/skills/
 cp -r iii-slides              ~/.codex/skills/
@@ -12,6 +13,7 @@ cp -r iii-playground          ~/.codex/skills/
 If your Codex build supports prompt templates, copy command files to `~/.codex/prompts/`:
 
 ```bash
+mkdir -p ~/.codex/prompts
 cp iii-architecture-diagram/commands/*.md ~/.codex/prompts/
 cp iii-infographic/commands/*.md         ~/.codex/prompts/
 cp iii-slides/commands/*.md              ~/.codex/prompts/

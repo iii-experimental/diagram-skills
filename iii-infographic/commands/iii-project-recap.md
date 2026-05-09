@@ -15,7 +15,7 @@ Workflow:
 
 Section plan:
 
-```
+```text
 HEADER         · project name + commit + dirty-tree status + last-commit timestamp
 § 01  WHERE    · last-N-commits topology · accent on commits ahead of main
 § 02  SHIPPED  · what landed this week — module · summary · test-count

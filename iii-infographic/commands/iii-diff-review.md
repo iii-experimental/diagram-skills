@@ -25,7 +25,7 @@ Run the **verification fact-sheet** procedure from `references/inventory.md` bef
 
 Section plan (deviate from canonical §01–§08 only as the diff demands):
 
-```
+```text
 HEADER         · ref summary + line/file totals + housekeeping (changelog/docs badges)
 § 01  SCOPE    · changed files topology (signal = kept, accent = changed)
 § 02  SURFACE  · new public API table — symbol · file · kind · line

@@ -2,7 +2,7 @@
 
 Six to eight numbered sections, in this order. Skip any that don't apply, but never reorder.
 
-```
+```text
 HEADER          · doc title block + metadata strip + legend
 § 01  SYSTEM    · topology: callers → triggers → functions → state
 § 02  PRIMITIVES· function signatures table (TS-flavored or Rust-flavored)
@@ -140,7 +140,7 @@ Below the panel, a single colophon row: `<project> · v<version> · iii system r
 
 When the audience is conceptual ("how does X work end-to-end") rather than referential ("what's in this codebase"), shift the IA without abandoning the eight-section frame:
 
-```
+```text
 HEADER          · scenario card top-left + key-numbers card top-right
 § 01 STEPS      · 4–6 numbered hero cards (one concept per card)         numbered-hero-cards.html
 § 02 PRIMITIVES · function/component table — same shape as system-ref    primitives-table.html

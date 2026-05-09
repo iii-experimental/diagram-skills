@@ -12,10 +12,12 @@ metadata:
 
 Generates a STANDALONE architecture diagram as `.svg`. Renders to `.png` via `rsvg-convert`.
 
+```text
+<slug>-architecture.svg     # vector, primary
+<slug>-architecture.png     # 2x raster, ~3840px, optional
 ```
-<project>-architecture.svg     # vector, primary
-<project>-architecture.png     # 2x raster, ~3840px, optional
-```
+
+`<slug>` is derived from the user's prompt or the working-directory basename; see `commands/iii-diagram.md` for the deterministic rule.
 
 The SVG embeds its own `<style>` block. Fonts use `font-family="JetBrains Mono, Menlo, ui-monospace, monospace"` and `Inter Tight, system-ui, sans-serif` so `rsvg-convert` falls back gracefully without Google Fonts loaded. No HTML wrapper, no JavaScript. Just the diagram.
 
