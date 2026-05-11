@@ -12,7 +12,7 @@
   "plugins": [
     {
       "name": "iii-architecture-diagram",
-      "source": "./iii-architecture-diagram",
+      "source": "./skills/iii-architecture-diagram",
       "description": "Standalone iii architecture diagrams (SVG + optional PNG). One focal element, max 9 nodes, ember accent on the iii primary path. Cream paper or warm dark.",
       "version": "3.2.0",
       "author": { "name": "iii", "url": "https://iii.dev" },
@@ -24,7 +24,7 @@
     },
     {
       "name": "iii-infographic",
-      "source": "./iii-infographic",
+      "source": "./skills/iii-infographic",
       "description": "Single-page iii system reference infographics. Six to eight numbered sections, real numbers from code, cream + dark themes. Also handles diff reviews, plan reviews, and project recaps.",
       "version": "2.1.0",
       "author": { "name": "iii", "url": "https://iii.dev" },
@@ -36,7 +36,7 @@
     },
     {
       "name": "iii-slides",
-      "source": "./iii-slides",
+      "source": "./skills/iii-slides",
       "description": "Single-file scroll-snap slide deck for iii talks and demos. 100dvh per slide, cream + dark themes, no auto-advance, ember accent anchored to a binary axis.",
       "version": "1.0.0",
       "author": { "name": "iii", "url": "https://iii.dev" },
@@ -48,7 +48,7 @@
     },
     {
       "name": "iii-playground",
-      "source": "./iii-playground",
+      "source": "./skills/iii-playground",
       "description": "Throwaway single-file HTML editors with copy-as-prompt export. Five patterns: kanban (drag triage), tuner (sliders + live preview), form-editor (config with constraints), split-preview (text + live render), curate (approve/reject/tag). Same iii editorial register as the rest of the bundle.",
       "version": "1.0.0",
       "author": { "name": "iii", "url": "https://iii.dev" },

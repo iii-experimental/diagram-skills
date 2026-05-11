@@ -4,10 +4,10 @@ Four skills for documenting [iii](https://iii.dev) projects with a consistent vi
 
 | Skill | Output | When to use |
 |---|---|---|
-| [`iii-architecture-diagram`](./iii-architecture-diagram/) | `.svg` (+ optional `.png`) | Single-page architecture / mesh / state-machine / layer-stack / editorial diagram |
-| [`iii-infographic`](./iii-infographic/) | self-contained `.html` | Printable system reference (6–8 numbered sections); also handles diff reviews, plan reviews, project recaps |
-| [`iii-slides`](./iii-slides/) | self-contained `.html` | Single-file scroll-snap slide deck (100dvh per slide) for talks and demos |
-| [`iii-playground`](./iii-playground/) | self-contained `.html` | Throwaway interactive editor with `copy-as-prompt` export — kanban, tuner, form-editor, split-preview, or curate |
+| [`iii-architecture-diagram`](./skills/iii-architecture-diagram/) | `.svg` (+ optional `.png`) | Single-page architecture / mesh / state-machine / layer-stack / editorial diagram |
+| [`iii-infographic`](./skills/iii-infographic/) | self-contained `.html` | Printable system reference (6–8 numbered sections); also handles diff reviews, plan reviews, project recaps |
+| [`iii-slides`](./skills/iii-slides/) | self-contained `.html` | Single-file scroll-snap slide deck (100dvh per slide) for talks and demos |
+| [`iii-playground`](./skills/iii-playground/) | self-contained `.html` | Throwaway interactive editor with `copy-as-prompt` export — kanban, tuner, form-editor, split-preview, or curate |
 
 All four skills share the iii editorial register: cream paper canvas (or warm dark), ember accent reserved for one focal element, Inter Tight + JetBrains Mono. Full brand contract in each skill's `SKILL.md` plus its `references/`.
 
@@ -27,65 +27,65 @@ Slash commands surface in agents that support them. In Claude Code they're names
 
 ## Patterns
 
-Five diagram patterns ship in `iii-architecture-diagram/assets/`. Every pattern has a cream variant and a dark variant; pick to match the target medium (deck, README, terminal, slide).
+Five diagram patterns ship in `skills/iii-architecture-diagram/assets/`. Every pattern has a cream variant and a dark variant; pick to match the target medium (deck, README, terminal, slide).
 
 <table>
 <tr>
 <td align="center" width="50%">
-  <img src="iii-architecture-diagram/assets/architecture-cream.png" alt="Architecture · cream"/>
+  <img src="skills/iii-architecture-diagram/assets/architecture-cream.png" alt="Architecture · cream"/>
   <br/><b>Architecture</b><br/>
   <sub>Components + connections · one focal worker · 6 nodes · ember primary flow</sub>
 </td>
 <td align="center" width="50%">
-  <img src="iii-architecture-diagram/assets/architecture-dark.png" alt="Architecture · dark"/>
+  <img src="skills/iii-architecture-diagram/assets/architecture-dark.png" alt="Architecture · dark"/>
   <br/><b>Architecture · dark</b><br/>
   <sub>Same vocabulary · warm <code>#0d0c0a</code> canvas · brighter ember + link</sub>
 </td>
 </tr>
 <tr>
 <td align="center">
-  <img src="iii-architecture-diagram/assets/mesh-cream.png" alt="Mesh · cream"/>
+  <img src="skills/iii-architecture-diagram/assets/mesh-cream.png" alt="Mesh · cream"/>
   <br/><b>Mesh</b><br/>
   <sub>N narrow workers around a hub · agent spotlit with ember edges · subset-mesh edges</sub>
 </td>
 <td align="center">
-  <img src="iii-architecture-diagram/assets/mesh-dark.png" alt="Mesh · dark"/>
+  <img src="skills/iii-architecture-diagram/assets/mesh-dark.png" alt="Mesh · dark"/>
   <br/><b>Mesh · dark</b><br/>
   <sub>The iii.dev landing aesthetic · thin strokes on warm dark</sub>
 </td>
 </tr>
 <tr>
 <td align="center">
-  <img src="iii-architecture-diagram/assets/layer-stack-cream.png" alt="Layer stack · cream"/>
+  <img src="skills/iii-architecture-diagram/assets/layer-stack-cream.png" alt="Layer stack · cream"/>
   <br/><b>Layer stack</b><br/>
   <sub>Stacked abstractions · iii engine modules with adapter classes · one focal layer</sub>
 </td>
 <td align="center">
-  <img src="iii-architecture-diagram/assets/layer-stack-dark.png" alt="Layer stack · dark"/>
+  <img src="skills/iii-architecture-diagram/assets/layer-stack-dark.png" alt="Layer stack · dark"/>
   <br/><b>Layer stack · dark</b><br/>
   <sub>Same stack · disabled module shown as dashed</sub>
 </td>
 </tr>
 <tr>
 <td align="center">
-  <img src="iii-architecture-diagram/assets/state-machine-cream.png" alt="State machine · cream"/>
+  <img src="skills/iii-architecture-diagram/assets/state-machine-cream.png" alt="State machine · cream"/>
   <br/><b>State machine</b><br/>
   <sub>States + transitions · sandbox lifecycle · one focal state · masked arrow labels</sub>
 </td>
 <td align="center">
-  <img src="iii-architecture-diagram/assets/state-machine-dark.png" alt="State machine · dark"/>
+  <img src="skills/iii-architecture-diagram/assets/state-machine-dark.png" alt="State machine · dark"/>
   <br/><b>State machine · dark</b><br/>
   <sub>Optional transitions dashed · primary entry in ember</sub>
 </td>
 </tr>
 <tr>
 <td align="center">
-  <img src="iii-architecture-diagram/assets/add-worker-cream.png" alt="Add a worker · cream"/>
+  <img src="skills/iii-architecture-diagram/assets/add-worker-cream.png" alt="Add a worker · cream"/>
   <br/><b>Add a worker (editorial)</b><br/>
   <sub>Big sans heading + mono list · introduces the iii narrow-workers thesis</sub>
 </td>
 <td align="center">
-  <img src="iii-architecture-diagram/assets/add-worker-dark.png" alt="Add a worker · dark"/>
+  <img src="skills/iii-architecture-diagram/assets/add-worker-dark.png" alt="Add a worker · dark"/>
   <br/><b>Add a worker · dark</b><br/>
   <sub>Same editorial · ember accent on the verb that matters</sub>
 </td>
@@ -98,10 +98,10 @@ Every skill ships raw editable scaffolds — copy, edit, ship. Don't recreate th
 
 | Skill | Templates |
 |---|---|
-| `iii-architecture-diagram` | `iii-architecture-diagram/templates/*.svg` (10 files: 5 patterns × cream + dark) |
-| `iii-infographic` | `iii-infographic/templates/index.html` (scaffold) + `iii-infographic/templates/section-snippets/*.html` (9 section starters) |
-| `iii-slides` | `iii-slides/templates/deck.html` (scaffold) + `iii-slides/templates/slide-snippets/*.html` (5 slide types) |
-| `iii-playground` | `iii-playground/templates/playground.html` (scaffold) + `iii-playground/templates/playground-snippets/*.html` (5 patterns) |
+| `iii-architecture-diagram` | `skills/iii-architecture-diagram/templates/*.svg` (10 files: 5 patterns × cream + dark) |
+| `iii-infographic` | `skills/iii-infographic/templates/index.html` (scaffold) + `skills/iii-infographic/templates/section-snippets/*.html` (9 section starters) |
+| `iii-slides` | `skills/iii-slides/templates/deck.html` (scaffold) + `skills/iii-slides/templates/slide-snippets/*.html` (5 slide types) |
+| `iii-playground` | `skills/iii-playground/templates/playground.html` (scaffold) + `skills/iii-playground/templates/playground-snippets/*.html` (5 patterns) |
 
 ## Harness matrix
 
@@ -111,10 +111,10 @@ Every skill ships raw editable scaffolds — copy, edit, ship. Don't recreate th
 | Claude Code (manual) | Symlink each skill into `~/.claude/skills/` (see below) | Description-trigger or slash command |
 | Pi | `pi install git:github.com/iii-experimental/diagram-skills` | `$iii-architecture-diagram` or slash commands |
 | Cursor | Copy `configs/cursor/iii-diagram-skills.mdc` into `.cursor/rules/` | Rules-based guidance (no native skills) |
-| Codex CLI | `cp -r iii-* ~/.codex/skills/` (see `configs/codex/AGENTS.md`) | `$iii-architecture-diagram` or `/prompts:iii-diagram` |
+| Codex CLI | `cp -r skills/iii-* ~/.codex/skills/` (see `configs/codex/AGENTS.md`) | `$iii-architecture-diagram` or `/prompts:iii-diagram` |
 | OpenCode | Copy each skill into `~/.config/opencode/skill/` (see `configs/opencode/AGENTS.md`) | Skill activation by name |
 | OpenClaw | Lightweight rules guidance (see `configs/openclaw/AGENTS.md`) | Manual workflow |
-| SkillKit (32+ agents) | `npx skillkit install <skill-name> --from <local-path>` | Per-agent activation |
+| SkillKit (32+ agents) | `npx skillkit add iii-experimental/diagram-skills` (or `--from <local-path>` for one skill) | Per-agent activation |
 
 ### Claude Code · symlink install
 
@@ -122,27 +122,27 @@ Every skill ships raw editable scaffolds — copy, edit, ship. Don't recreate th
 git clone https://github.com/iii-experimental/diagram-skills ~/diagram-skills
 
 # user-level (available in every project)
-ln -sf ~/diagram-skills/iii-architecture-diagram ~/.claude/skills/iii-architecture-diagram
-ln -sf ~/diagram-skills/iii-infographic         ~/.claude/skills/iii-infographic
-ln -sf ~/diagram-skills/iii-slides              ~/.claude/skills/iii-slides
-ln -sf ~/diagram-skills/iii-playground          ~/.claude/skills/iii-playground
+ln -sf ~/diagram-skills/skills/iii-architecture-diagram ~/.claude/skills/iii-architecture-diagram
+ln -sf ~/diagram-skills/skills/iii-infographic         ~/.claude/skills/iii-infographic
+ln -sf ~/diagram-skills/skills/iii-slides              ~/.claude/skills/iii-slides
+ln -sf ~/diagram-skills/skills/iii-playground          ~/.claude/skills/iii-playground
 
 # or project-local (any repo)
 mkdir -p .claude/skills
-ln -sf ~/diagram-skills/iii-architecture-diagram ./.claude/skills/iii-architecture-diagram
-ln -sf ~/diagram-skills/iii-infographic         ./.claude/skills/iii-infographic
-ln -sf ~/diagram-skills/iii-slides              ./.claude/skills/iii-slides
-ln -sf ~/diagram-skills/iii-playground          ./.claude/skills/iii-playground
+ln -sf ~/diagram-skills/skills/iii-architecture-diagram ./.claude/skills/iii-architecture-diagram
+ln -sf ~/diagram-skills/skills/iii-infographic         ./.claude/skills/iii-infographic
+ln -sf ~/diagram-skills/skills/iii-slides              ./.claude/skills/iii-slides
+ln -sf ~/diagram-skills/skills/iii-playground          ./.claude/skills/iii-playground
 ```
 
 ### SkillKit (Claude Code, Cursor, Codex, Gemini CLI, OpenCode, 27 more)
 
 ```bash
 # from a local clone
-npx skillkit install iii-architecture-diagram --from ~/diagram-skills/iii-architecture-diagram
-npx skillkit install iii-infographic         --from ~/diagram-skills/iii-infographic
-npx skillkit install iii-slides              --from ~/diagram-skills/iii-slides
-npx skillkit install iii-playground          --from ~/diagram-skills/iii-playground
+npx skillkit install iii-architecture-diagram --from ~/diagram-skills/skills/iii-architecture-diagram
+npx skillkit install iii-infographic         --from ~/diagram-skills/skills/iii-infographic
+npx skillkit install iii-slides              --from ~/diagram-skills/skills/iii-slides
+npx skillkit install iii-playground          --from ~/diagram-skills/skills/iii-playground
 
 # translate to a different agent format
 npx skillkit translate iii-architecture-diagram --agent cursor
@@ -154,10 +154,10 @@ npx skillkit translate iii-slides              --agent opencode
 
 ```bash
 cd ~/diagram-skills
-zip -r iii-architecture-diagram.zip iii-architecture-diagram
-zip -r iii-infographic.zip         iii-infographic
-zip -r iii-slides.zip              iii-slides
-zip -r iii-playground.zip          iii-playground
+(cd skills && zip -r ../iii-architecture-diagram.zip iii-architecture-diagram)
+(cd skills && zip -r ../iii-infographic.zip iii-infographic)
+(cd skills && zip -r ../iii-slides.zip iii-slides)
+(cd skills && zip -r ../iii-playground.zip iii-playground)
 ```
 
 Upload each zip via **Settings → Capabilities → Skills → + Add**.

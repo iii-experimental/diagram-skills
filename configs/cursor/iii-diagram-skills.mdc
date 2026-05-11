@@ -8,10 +8,10 @@ Use the canonical `iii-architecture-diagram`, `iii-infographic`, `iii-slides`, a
 
 When the user asks for:
 
-- A diagram (SVG or PNG) of an iii deployment, worker, or dataflow → read `iii-architecture-diagram/SKILL.md` and follow its workflow. Templates live in `iii-architecture-diagram/templates/`.
-- A system reference page, diff review, plan review, or project recap → read `iii-infographic/SKILL.md`. Scaffold lives in `iii-infographic/templates/index.html`; section snippets in `iii-infographic/templates/section-snippets/`.
-- A talk deck or presentation → read `iii-slides/SKILL.md`. Scaffold lives in `iii-slides/templates/deck.html`; slide snippets in `iii-slides/templates/slide-snippets/`.
-- A throwaway interactive editor (kanban triage, slider tuner, form editor with constraints, prompt split-preview, dataset curate) → read `iii-playground/SKILL.md`. Scaffold lives in `iii-playground/templates/playground.html`; pattern snippets in `iii-playground/templates/playground-snippets/`. Primary export is `[copy as prompt]` for natural-language paste-back; `[copy as JSON]` is available as an optional second export when the agent expects structured input.
+- A diagram (SVG or PNG) of an iii deployment, worker, or dataflow → read `skills/iii-architecture-diagram/SKILL.md` and follow its workflow. Templates live in `skills/iii-architecture-diagram/templates/`.
+- A system reference page, diff review, plan review, or project recap → read `skills/iii-infographic/SKILL.md`. Scaffold lives in `skills/iii-infographic/templates/index.html`; section snippets in `skills/iii-infographic/templates/section-snippets/`.
+- A talk deck or presentation → read `skills/iii-slides/SKILL.md`. Scaffold lives in `skills/iii-slides/templates/deck.html`; slide snippets in `skills/iii-slides/templates/slide-snippets/`.
+- A throwaway interactive editor (kanban triage, slider tuner, form editor with constraints, prompt split-preview, dataset curate) → read `skills/iii-playground/SKILL.md`. Scaffold lives in `skills/iii-playground/templates/playground.html`; pattern snippets in `skills/iii-playground/templates/playground-snippets/`. Primary export is `[copy as prompt]` for natural-language paste-back; `[copy as JSON]` is available as an optional second export when the agent expects structured input.
 
 Each skill ships:
 - `SKILL.md` — entrypoint, when-to-use, workflow.
