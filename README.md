@@ -1,5 +1,9 @@
 # diagram-skills
 
+```bash
+npx skillkit add iii-experimental/diagram-skills
+```
+
 Four skills for documenting [iii](https://iii.dev) projects with a consistent visual vocabulary.
 
 | Skill | Output | When to use |
