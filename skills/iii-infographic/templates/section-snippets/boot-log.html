@@ -1,4 +1,3 @@
-<!-- §08 BOOT · annotated boot log + port table. Capture verbatim from project startup. -->
 <section id="sec08">
   <div class="sec-head">
     <span class="sec-eyebrow"><b>§ 08 · BOOT</b> · ANNOTATED LOG</span>
@@ -7,7 +6,8 @@
   <h2 class="sec-h2">The boot log is the runtime contract.</h2>
   <p class="sub">Every count on this page traces to a line below. If the boot log changes, this page changes.</p>
 
-<pre class="boot"><span class="d">$</span> <span class="a">curl -fsSL https://install.iii.dev/iii/main/install.sh | sh</span>
+<pre class="boot"><span class="d">$</span> <span class="a">curl -fsSL https://install.iii.dev/iii/main/install.sh -o install.sh</span>
+<span class="d">$</span> <span class="a">sh install.sh</span>
 <span class="c"># installs iii-engine binary to ~/.iii/bin</span>
 
 <span class="d">$</span> iii start

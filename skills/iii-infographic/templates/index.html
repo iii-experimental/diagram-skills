@@ -325,7 +325,6 @@ footer { border-top: 1px solid var(--line-strong); padding: 56px 0 36px; }
 
 <div class="container">
 
-  <!-- ============== HEADER ============== -->
   <header class="doc-header">
     <div class="doc-id">
       <span>system reference · single-page</span>
@@ -354,7 +353,6 @@ footer { border-top: 1px solid var(--line-strong); padding: 56px 0 36px; }
     </div>
   </header>
 
-  <!-- ============== § 01 SYSTEM ============== -->
   <section id="sec01">
     <div class="sec-head">
       <span class="sec-eyebrow"><b>§ 01 · SYSTEM</b> · TOPOLOGY</span>
@@ -420,7 +418,6 @@ footer { border-top: 1px solid var(--line-strong); padding: 56px 0 36px; }
     </div>
   </section>
 
-  <!-- ============== § 02 PRIMITIVES ============== -->
   <section id="sec02">
     <div class="sec-head">
       <span class="sec-eyebrow"><b>§ 02 · PRIMITIVES</b> · FUNCTION SIGNATURES</span>
@@ -453,7 +450,6 @@ footer { border-top: 1px solid var(--line-strong); padding: 56px 0 36px; }
     </table></div>
   </section>
 
-  <!-- ============== § 04 CORE ============== -->
   <section id="sec04">
     <div class="sec-head">
       <span class="sec-eyebrow"><b>§ 04 · CORE</b> · WHAT MAKES THIS PROJECT</span>
@@ -489,7 +485,6 @@ footer { border-top: 1px solid var(--line-strong); padding: 56px 0 36px; }
     </div>
   </section>
 
-  <!-- ============== § 07 SURFACES ============== -->
   <section id="sec07">
     <div class="sec-head">
       <span class="sec-eyebrow"><b>§ 07 · SURFACES</b> · EXTERNAL INTERFACES</span>
@@ -534,7 +529,6 @@ footer { border-top: 1px solid var(--line-strong); padding: 56px 0 36px; }
     </div>
   </section>
 
-  <!-- ============== § 08 BOOT ============== -->
   <section id="sec08">
     <div class="sec-head">
       <span class="sec-eyebrow"><b>§ 08 · BOOT</b> · ANNOTATED LOG</span>
@@ -543,7 +537,8 @@ footer { border-top: 1px solid var(--line-strong); padding: 56px 0 36px; }
     <h2 class="sec-h2">The boot log is the runtime contract.</h2>
     <p class="sub">Every count on this page traces to a line below. If the boot log changes, this page changes.</p>
 
-<pre class="boot"><span class="d">$</span> <span class="a">curl -fsSL https://install.iii.dev/iii/main/install.sh | sh</span>
+<pre class="boot"><span class="d">$</span> <span class="a">curl -fsSL https://install.iii.dev/iii/main/install.sh -o install.sh</span>
+<span class="d">$</span> <span class="a">sh install.sh</span>
 <span class="c"># installs iii-engine binary to ~/.iii/bin</span>
 
 <span class="d">$</span> iii start
@@ -555,7 +550,6 @@ footer { border-top: 1px solid var(--line-strong); padding: 56px 0 36px; }
 <span class="c">[2026-01-01 00:00:00]</span> <span class="s">ready</span></pre>
   </section>
 
-  <!-- ============== FOOTER ============== -->
   <footer>
     <div class="refs">
       <div class="col">
