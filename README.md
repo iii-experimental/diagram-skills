@@ -114,7 +114,7 @@ Every skill ships raw editable scaffolds — copy, edit, ship. Don't recreate th
 | Codex CLI | `cp -r skills/iii-* ~/.codex/skills/` (see `configs/codex/AGENTS.md`) | `$iii-architecture-diagram` or `/prompts:iii-diagram` |
 | OpenCode | Copy each skill into `~/.config/opencode/skill/` (see `configs/opencode/AGENTS.md`) | Skill activation by name |
 | OpenClaw | Lightweight rules guidance (see `configs/openclaw/AGENTS.md`) | Manual workflow |
-| SkillKit (32+ agents) | `npx skillkit add iii-experimental/diagram-skills` (or `--from <local-path>` for one skill) | Per-agent activation |
+| SkillKit (32+ agents) | `npx skillkit add iii-experimental/diagram-skills` (or `npx skillkit install <local-path>` for one skill) | Per-agent activation |
 
 ### Claude Code · symlink install
 
@@ -139,10 +139,10 @@ ln -sf ~/diagram-skills/skills/iii-playground          ./.claude/skills/iii-play
 
 ```bash
 # from a local clone
-npx skillkit install iii-architecture-diagram --from ~/diagram-skills/skills/iii-architecture-diagram
-npx skillkit install iii-infographic         --from ~/diagram-skills/skills/iii-infographic
-npx skillkit install iii-slides              --from ~/diagram-skills/skills/iii-slides
-npx skillkit install iii-playground          --from ~/diagram-skills/skills/iii-playground
+npx skillkit install ~/diagram-skills/skills/iii-architecture-diagram
+npx skillkit install ~/diagram-skills/skills/iii-infographic
+npx skillkit install ~/diagram-skills/skills/iii-slides
+npx skillkit install ~/diagram-skills/skills/iii-playground
 
 # translate to a different agent format
 npx skillkit translate iii-architecture-diagram --agent cursor
