@@ -2,10 +2,10 @@ Use the canonical iii diagram skills from this repo: `iii-architecture-diagram`,
 
 OpenClaw support is lightweight rules guidance, not a native plugin adapter. Point the agent at the relevant `SKILL.md` and ask it to follow that workflow:
 
-- Architecture diagram: `iii-architecture-diagram/SKILL.md`
-- System reference, diff review, plan review, project recap: `iii-infographic/SKILL.md`
-- Slide deck: `iii-slides/SKILL.md`
-- Throwaway interactive editor (kanban / tuner / form-editor / split-preview / curate): `iii-playground/SKILL.md`
+- Architecture diagram: `skills/iii-architecture-diagram/SKILL.md`
+- System reference, diff review, plan review, project recap: `skills/iii-infographic/SKILL.md`
+- Slide deck: `skills/iii-slides/SKILL.md`
+- Throwaway interactive editor (kanban / tuner / form-editor / split-preview / curate): `skills/iii-playground/SKILL.md`
 
 Each skill's `references/*.md` covers tokens, grammar, checklist, and anti-patterns; `templates/` ships copy-paste starter scaffolds.
 
